@@ -20,8 +20,8 @@ class CreateClientesTable extends Migration
             $table->string('contacto');
             $table->bigInteger('telefono');
             $table->string('canal');
-            $table->string('email')->unique();
-            $table->unsignedBigInteger('usuario_id')->nullable();
+            $table->string('email');
+            $table->unsignedBigInteger('usuario_id');
             $table->foreign('usuario_id')->references('id')->on('users');
             $table->boolean('active')->default(1);
             $table->timestamps();
