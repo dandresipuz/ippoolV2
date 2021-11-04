@@ -31,7 +31,7 @@ class Cliente extends Model
     }
     public function ipaddres()
     {
-        return $this->hasMany('App\Models\Ipaddres');
+        return $this->hasMany('App\Models\Ipaddress');
     }
     public function wancliente()
     {

@@ -17,7 +17,7 @@ class CreateIpaddressesTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->boolean('estado')->default(0);
-            $table->unsignedBigInteger('cliente_id')->nullable();
+            $table->unsignedBigInteger('cliente_id');
             $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->timestamps();
         });
