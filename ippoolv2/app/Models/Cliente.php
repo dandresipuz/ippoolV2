@@ -24,4 +24,17 @@ class Cliente extends Model
         'usuario_id',
         'active',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+    public function ipaddres()
+    {
+        return $this->hasMany('App\Models\Ipaddres');
+    }
+    public function wancliente()
+    {
+        return $this->hasMany('App\Models\Wancliente');
+    }
 }
