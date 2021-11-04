@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Area extends Model
 {
     use HasFactory;
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $fillable = [
+        'nombre',
+    ];
+
+    public function user()
+    {
+        return $this->hasMany('App\Models\User');
+    }
 }

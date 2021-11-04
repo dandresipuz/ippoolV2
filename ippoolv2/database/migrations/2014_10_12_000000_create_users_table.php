@@ -22,12 +22,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('perfil')->default('Gestion');
+            $table->string('perfil')->default('Consulta');
             $table->boolean('active')->default(1);
             $table->rememberToken();
-            $table->unsignedBigInteger('empresa_id')->nullable();
+            $table->unsignedBigInteger('empresa_id');
             $table->foreign('empresa_id')->references('id')->on('empresas');
-            $table->unsignedBigInteger('area_id')->nullable();
+            $table->unsignedBigInteger('area_id');
             $table->foreign('area_id')->references('id')->on('areas');
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
