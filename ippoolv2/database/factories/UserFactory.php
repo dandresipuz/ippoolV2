@@ -24,12 +24,22 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+
+        $name       = $this->faker->firstName();
+        $lastname   = $this->faker->lastName();
+
         return [
-            'name' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail(),
+            'nombre'            => $this->faker->firstName(),
+            'apellido'          => $this->faker->lastName(),
+            'telefono'          => $this->faker->numberBetween($min = 3101000000, $max = 3202000000),
+            'login'             => $name . '.' . $lastname,
+            'email'             => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
+            'password'          => bcrypt('Consulta1234'),
+            'empresa_id'        => $this->faker->numberBetween($min = 1, $max = 4),
+            'area_id'           => $this->faker->numberBetween($min = 1, $max = 13),
+            'remember_token'    => Str::random(10),
+            'created_at'        => $this->faker->date(),
         ];
     }
 
@@ -54,14 +64,14 @@ class UserFactory extends Factory
      */
     public function withPersonalTeam()
     {
-        if (! Features::hasTeamFeatures()) {
+        if (!Features::hasTeamFeatures()) {
             return $this->state([]);
         }
 
         return $this->has(
             Team::factory()
                 ->state(function (array $attributes, User $user) {
-                    return ['name' => $user->name.'\'s Team', 'user_id' => $user->id, 'personal_team' => true];
+                    return ['name' => $user->name . '\'s Team', 'user_id' => $user->id, 'personal_team' => true];
                 }),
             'ownedTeams'
         );
