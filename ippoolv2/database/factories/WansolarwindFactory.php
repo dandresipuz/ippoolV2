@@ -24,15 +24,15 @@ class WansolarwindFactory extends Factory
     public function definition()
     {
 
-        $vlanid        = $this->faker->numberBetween($min = 1100, $max = 5000);
-        $redwanuno     = $this->faker->ipv4();
-        $redwandos     = $this->faker->ipv4();
-        $ipbogrtdntres = $this->faker->ipv4();
-        $ipboggcuno    = $this->faker->ipv4();
-        $ipbog4100     = $this->faker->ipv4();
-        $ipboggcdos    = $this->faker->ipv4();
+        $vlanid        = $this->faker->unique(true)->numberBetween($min = 1100, $max = 40000);
+        $redwanuno     = $this->faker->unique(true)->ipv4();
+        $redwandos     = $this->faker->unique(true)->ipv4();
+        $ipbogrtdntres = $this->faker->unique(true)->ipv4();
+        $ipboggcuno    = $this->faker->unique(true)->ipv4();
+        $ipbog41000    = $this->faker->unique(true)->ipv4();
+        $ipboggcdos    = $this->faker->unique(true)->ipv4();
         $estado        = $this->faker->randomElement($array = array(0, 1));
-        $created_at    = $this->faker->now();
+        $created_at    = now();
 
         return [
             'vlanid'        => $vlanid,
@@ -40,7 +40,7 @@ class WansolarwindFactory extends Factory
             'redwandos'     => $redwandos,
             'ipbogrtdntres' => $ipbogrtdntres,
             'ipboggcuno'    => $ipboggcuno,
-            'ipbog4100'     => $ipbog4100,
+            'ipbog41000'    => $ipbog41000,
             'ipboggcdos'    => $ipboggcdos,
             'estado'        => $estado,
             'created_at'    => $created_at,

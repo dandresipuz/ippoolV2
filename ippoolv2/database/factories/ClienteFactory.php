@@ -24,14 +24,14 @@ class ClienteFactory extends Factory
     public function definition()
     {
 
-        $nit        = $this->faker->numberBetween($min = 1111111, $max = 9999999);
+        $nit        = $this->faker->unique(true)->numberBetween($min = 1111111, $max = 9999999);
         $nombre     = $this->faker->company();
         $contacto   = $this->faker->name();
         $telefono   = $this->faker->numberBetween($min = 3101000000, $max = 3202000000);
         $canal      = $this->faker->randomElement($array = array('Internet', 'Datos'));
         $email      = $this->faker->unique()->safeEmail;
         $usuario_id = $this->faker->numberBetween($min = 1, $max = 31);
-        $created_at = $this->faker->date();
+        $created_at = now();
 
         return [
             'nit'           => $nit,

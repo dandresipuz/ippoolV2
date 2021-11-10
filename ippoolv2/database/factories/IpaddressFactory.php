@@ -23,10 +23,10 @@ class IpaddressFactory extends Factory
      */
     public function definition()
     {
-        $ipaddress          = $this->faker->localIpv4();
+        $ipaddress          = $this->faker->unique(true)->localIpv4();
         $estado             = $this->faker->randomElement($array = array(0, 1));
-        $cliente_id         = $this->faker->numberBetween($min = 1, $max = 2000);
-        $created_at         = $this->faker->now();
+        $cliente_id         = $this->faker->numberBetween($min = 1, $max = 99);
+        $created_at         = now();
         return [
             'ipaddress'     => $ipaddress,
             'estado'        => $estado,

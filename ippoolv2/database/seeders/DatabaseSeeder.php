@@ -17,9 +17,9 @@ class DatabaseSeeder extends Seeder
         $this->call(AreaSeeder::class);
         $this->call(UserSeeder::class);
         \App\Models\User::factory(30)->create();
-        \App\Models\Cliente::factory(2000)->create();
-        \App\Models\Ipaddress::factory(1000)->create();
-        \App\Models\Wansolarwind::factory(4000)->create();
-        \App\Models\Wancliente::factory(4000)->create();
+        \App\Models\Cliente::factory(100)->create();
+        \App\Models\Ipaddress::factory(100)->create();
+        \App\Models\Wansolarwind::factory(100)->create();
+        \App\Models\Wancliente::factory(100)->create();
     }
 }
