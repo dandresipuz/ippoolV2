@@ -8,6 +8,20 @@
             <div class="card-header">
                 <h1><i class="fa fa-fw fa-user-plus"></i> Crear usuario</h1>
             </div>
+            <nav aria-label="breadcrumb" class="pt-3">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="{{ route('admin.users.index') }}">
+                            <i class="fa fa-fw fa-th-list"></i> Lista de usuarios
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <i class="fa fa-pen"></i>
+                        Crear Usuario
+                    </li>
+                </ol>
+            </nav>
+            <hr>
         </div>
     </div>
 @stop

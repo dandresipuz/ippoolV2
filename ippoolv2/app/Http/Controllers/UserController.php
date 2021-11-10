@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserRequest;
 use App\Models\Area;
 use App\Models\User;
 use App\Models\Empresa;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -17,9 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        // dd('lista de usuarios');
-        $users = User::all();
-        // dd($users);
+        $users = User::paginate(10);
         return view('admin.users.index')->with('users', $users);
     }
 
@@ -45,7 +44,7 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $user = User::create($request->all());
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')->with('message', 'El usuario ' . $user->nombre . ' ' . $user->apellido . ' fue creado con éxito.');
     }
 
     /**
@@ -54,9 +53,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        return view('admin.users.show');
+        return view('admin.users.show')->with('user', $user);
     }
 
     /**
@@ -89,11 +88,16 @@ class UserController extends Controller
         $user->email            = $request->email;
         $user->telefono         = $request->telefono;
         $user->perfil           = $request->perfil;
-        $user->empresa_id       = $request->empresa__id;
+        $user->empresa_id       = $request->empresa_id;
         $user->area_id          = $request->area_id;
+        if ($user->active == 2) { //Pregunta si es 2 se pasa a 0
+            $user->active = 0;
+        } else {
+            $user->active = $request->active; //Si no se queda en 1
+        }
 
         if ($user->save()) {
-            return redirect()->route('admin.users.index');
+            return redirect()->route('admin.users.index')->with('message', 'El usuario ' . $user->nombre . ' ' . $user->apellido . ' fue actualizado con éxito.');
         }
     }
 
@@ -103,8 +107,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $id_user = $user->id;
+        // Seleccionamos todos los clientes que pertenezcan a ese usuario por ID y lo actualizamos al ID del administrador
+        $clientes = DB::table('clientes')->where('usuario_id', $id_user)
+            ->update(['usuario_id' => 1]);
+        // Luego de actualizarlo podemos borrar para evitar el problema de las llaves foráneas
+        if ($user->delete()) {
+            return redirect()->route('admin.users.index')->with('message', 'El usuario: ' . $user->nombre . ' ' . $user->apellido . ' fue eliminado con exito con Exito!. Sus registros fueron asignamos al Administrador');
+        }
     }
 }

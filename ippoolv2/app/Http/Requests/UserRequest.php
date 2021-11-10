@@ -27,10 +27,10 @@ class UserRequest extends FormRequest
             // Edit Form
             return [
                 'nombre'        => 'required',
-                'apellido'      => 'required',
-                'telefono'      => 'required|numeric',
+                'apellido'      => 'required|',
+                'telefono'      => 'required|numeric|regex:/^[3][0-3][0-9]{8}$/',
+                'login'         => 'required|unique:users,login,' . $this->id,
                 'email'         => 'required|email|unique:users,email,' . $this->id,
-                'password'      => 'min:8|regex:/(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/|confirmed',
                 'perfil'        => 'required',
                 'active'        => 'required',
                 'empresa_id'    => 'required',
@@ -41,7 +41,7 @@ class UserRequest extends FormRequest
             return [
                 'nombre'        => 'required',
                 'apellido'      => 'required',
-                'telefono'      => 'required|numeric',
+                'telefono'      => 'required|numeric|regex:/^[3][0-3][0-9]{8}$/',
                 'login'         => 'required|unique:users',
                 'email'         => 'required|email|unique:users',
                 'password'      => 'required|min:8|regex:/(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/|confirmed',

@@ -3,7 +3,7 @@
 @section('title', 'Lista de usuarios')
 
 @section('content_header')
-    <h1>Lista de usuarios</h1>
+    <h1><i class="fa fa-fw fa-th-list"></i> Lista de usuarios</h1>
 @stop
 
 @section('content')
@@ -29,8 +29,7 @@
                 </thead>
                 <tbody>
                     @foreach ($users as $user)
-
-                        <tr class="table">
+                        <tr @if ($user->active == 0) class="table table-danger" @else class="table" @endif>
                             <td class="d-none d-sm-table-cell">{{ $user->nombre . ' ' . $user->apellido }}</td>
                             <td class="d-none d-sm-table-cell">{{ $user->login }}</td>
                             <td>{{ $user->email }}</td>
@@ -39,7 +38,7 @@
                             <td class="d-none d-sm-table-cell">{{ $user->area->nombre }}</td>
                             <td>
                                 <a href="{{ url('admin/users/' . $user->id) }}" class="btn btn-xs btn-primary"><i
-                                        class="fa fa-fw fa-search"></i></a>
+                                        class="fa fa-fw fa-info-circle"></i></a>
                                 <a href="{{ url('admin/users/' . $user->id . '/edit') }}"
                                     class="btn btn-xs btn-warning"><i class="fa fa-fw fa-pen"></i></a>
                                 <form action="{{ url('admin/users/' . $user->id) }}" method="POST" class="d-inline">
@@ -53,6 +52,45 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $users->links('pagination::bootstrap-4') }}
         </div>
     </div>
 @stop
+@section('js')
+    <script>
+        $(document).ready(function() {
+            @if (session('message'))
+                Swal.fire({
+                // position: 'top-end',
+                title: 'Perfecto :) ',
+                text: "{{ session('message') }}",
+                confirmButtonColor: '#1e5f74',
+                confirmButtonText: 'Aceptar'
+                });
+            @endif
+            @if (session('error'))
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "{{ session('error') }}",
+                });
+            @endif
+            $('.btn-delete').click(function(event) {
+                Swal.fire({
+                    title: 'Está seguro?',
+                    text: 'Desea eliminar este registro',
+                    icon: 'error',
+                    showCancelButton: true,
+                    cancelButtonColor: '#e3342f',
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonColor: '#1e5f74',
+                    confirmButtonText: 'Aceptar',
+                }).then((result) => {
+                    if (result.value) {
+                        $(this).parent().submit();
+                    }
+                });
+            });
+        });
+    </script>
+@endsection

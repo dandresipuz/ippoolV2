@@ -8,6 +8,20 @@
             <div class="card-header">
                 <h1><i class="fa fa-fw fa-edit"></i>Editar a {{ $user->nombre }} {{ $user->apellido }}</h1>
             </div>
+            <nav aria-label="breadcrumb" class="pt-3">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="{{ route('admin.users.index') }}">
+                            <i class="fa fa-fw fa-th-list"></i> Lista de usuarios
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <i class="fa fa-pen"></i>
+                        Editar Usuario
+                    </li>
+                </ol>
+            </nav>
+            <hr>
         </div>
     </div>
 @stop
@@ -45,8 +59,9 @@
                         </div>
 
                         <div class="form-group">
+                            <input type="hidden" name="login" value="{{ $user->login }}">
                             <input id="login" type="text" class="form-control @error('login') is-invalid @enderror"
-                                name="login" value="{{ old('login', $user->login) }}" disabled>
+                                name="login" value="{{ old('login', $user->login) }}" disabled readonly>
 
                             @error('login')
                                 <span class="invalid-feedback" role="alert">
@@ -78,11 +93,25 @@
                         </div>
 
                         <div class="form-group">
+                            <select name="active" class="form-control @error('active') is-invalid @enderror">
+                                <option value="">Seleccione un estado</option>
+                                <option value="1" @if (old('active', $user->active) == 1) selected @endif>Activo</option>
+                                <option value="0" @if (old('active', $user->active) == 0) selected @endif>Inactivo</option>
+                            </select>
+
+                            @error('slider')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
                             <select name="perfil" class="form-control @error('perfil') is-invalid @enderror">
                                 <option value="">Seleccionar perfil</option>
-                                <option value="Admin" @if (old('perfil') == 'Admin') selected @endif>Admin</option>
-                                <option value="Gestion" @if (old('perfil') == 'Gestion') selected @endif>Gestion</option>
-                                <option value="Consulta" @if (old('perfil') == 'Consulta') selected @endif>Consulta</option>
+                                <option value="Admin" @if (old('perfil', $user->perfil) == 'Admin') selected @endif>Admin</option>
+                                <option value="Gestion" @if (old('perfil', $user->perfil) == 'Gestion') selected @endif>Gestion</option>
+                                <option value="Consulta" @if (old('perfil', $user->perfil) == 'Consulta') selected @endif>Consulta</option>
                             </select>
 
                             @error('perfil')
