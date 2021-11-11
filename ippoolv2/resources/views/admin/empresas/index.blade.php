@@ -78,7 +78,7 @@
             @endif
             $('.btn-delete').click(function(event) {
                 Swal.fire({
-                    title: 'Está seguro?',
+                    title: 'Está segur@?',
                     text: 'Desea eliminar este registro',
                     icon: 'error',
                     showCancelButton: true,

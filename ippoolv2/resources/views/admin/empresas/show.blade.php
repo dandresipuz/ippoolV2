@@ -39,7 +39,9 @@
                         <tr>
                             <th>Usuarios</th>
 
-                            <td>@foreach ($users as $user){{ $user->nombre }} @endforeach</td>
+                            <td>
+                                <h3><span class="badge badge-info">{{ COUNT($users) }}</span></h3>
+                            </td>
 
                         </tr>
                         <tr>

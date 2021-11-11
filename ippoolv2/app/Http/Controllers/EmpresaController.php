@@ -53,6 +53,7 @@ class EmpresaController extends Controller
     {
         $empresa_id = $empresa->id;
         $users = DB::table('users')->where('empresa_id', $empresa_id)
+            ->where('active', 1)
             ->get();
         return view('admin.empresas.show')->with('empresa', $empresa)
             ->with('users', $users);
@@ -96,8 +97,13 @@ class EmpresaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Empresa $empresa)
     {
-        //
+        $id_empresa = $empresa->id;
+        $users = DB::table('users')->where('empresa_id', $id_empresa)
+            ->update(['empresa_id' => 1]);
+        if ($empresa->delete()) {
+            return redirect()->route('admin.empresas.index')->with('message', 'La empresa: ' . $empresa->nombre . ' fue eliminada con exito con Exito!');
+        }
     }
 }
