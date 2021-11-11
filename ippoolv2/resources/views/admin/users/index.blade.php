@@ -15,16 +15,15 @@
         </div>
         <div class="card-body">
             <table class="table table-hover">
-                <thead>
+                <thead class="thead-dark">
                     <tr>
-                        <th scope="col" class="d-none d-sm-table-cell table-dark">Nombre</th>
-                        <th scope="col" class="d-none d-sm-table-cell table-dark">Login</th>
-                        <th scope="col" class="table-dark">Email</th>
-                        <th scope="col" class="d-none d-sm-table-cell table-dark">Perfil</th>
-                        <th scope="col" class="d-none d-sm-table-cell table-dark">Empresa</th>
-                        <th scope="col" class="d-none d-sm-table-cell table-dark">Area</th>
-                        <th scope="col" class="d-none d-sm-table-cell table-dark">Empresa</th>
-                        <th scope="col" class="table-dark"></th>
+                        <th scope="col" class="d-none d-sm-table-cell">Nombre</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Login</th>
+                        <th scope="col">Email</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Perfil</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Empresa</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Area</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,7 +35,7 @@
                             <td class="d-none d-sm-table-cell">{{ $user->perfil }}</td>
                             <td class="d-none d-sm-table-cell">{{ $user->empresa->nombre }}</td>
                             <td class="d-none d-sm-table-cell">{{ $user->area->nombre }}</td>
-                            <td>
+                            <td width="110px">
                                 <a href="{{ url('admin/users/' . $user->id) }}" class="btn btn-xs btn-primary"><i
                                         class="fa fa-fw fa-info-circle"></i></a>
                                 <a href="{{ url('admin/users/' . $user->id . '/edit') }}"

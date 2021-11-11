@@ -90,6 +90,7 @@ class UserController extends Controller
         $user->perfil           = $request->perfil;
         $user->empresa_id       = $request->empresa_id;
         $user->area_id          = $request->area_id;
+        $user->password         = $request->password;
         if ($user->active == 2) { //Pregunta si es 2 se pasa a 0
             $user->active = 0;
         } else {

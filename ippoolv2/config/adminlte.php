@@ -256,19 +256,11 @@ return [
             'text'      => 'Gestionar usuarios',
             'route'     => 'admin.users.index',
             'icon'      => 'fas fa-fw fa-users',
-            /* 'submenu' => [
-                [
-                    'text'      => 'Lista de usuarios',
-                    'route'     => '',
-                    'icon'      => 'fas fa-fw fa-th-list',
-                ],
-                [
-                    'text' => 'Agregar usuario',
-                    'route'  => 'admin.users.create',
-                    'icon'      => 'fas fa-fw fa-user-plus',
-
-                ],
-            ] */
+        ],
+        [
+            'text'      => 'Gestionar Empresas',
+            'route'     => 'admin.empresas.index',
+            'icon'      => 'fas fa-fw fa-building',
         ],
         [
             'text' => 'change_password',

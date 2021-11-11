@@ -15,6 +15,7 @@ class Area extends Model
      */
     protected $fillable = [
         'nombre',
+        'active'
     ];
 
     public function user()

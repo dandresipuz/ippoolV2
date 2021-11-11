@@ -27,7 +27,6 @@
 @stop
 
 @section('content')
-
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="card">
@@ -153,31 +152,52 @@
                             @enderror
                         </div>
 
-                        {{-- <div class="form-group">
-                            <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                name="password" placeholder="Contraseña">
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link btn-block text-left" type="button"
+                                            data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                                            aria-controls="collapseOne">
+                                            Cambiar contraseña
+                                        </button>
+                                    </h2>
+                                </div>
 
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                            <p class="text-danger py-4"> La contraseña debe tener entre 8 y 16 caracteres, al menos un
-                                dígito,
-                                al menos una minúscula y al menos una mayúscula.
-                                Puede tener otros símbolos.</p>
-                        </div>
+                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                    data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <input type="password"
+                                                class="form-control @error('password') is-invalid @enderror" name="password"
+                                                placeholder="Contraseña">
 
-                        <div class="form-group">
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
-                                placeholder="Confirmar contraseña">
-                        </div> --}}
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block text-uppercase">
-                                Actualizar
-                                <i class="fa fa-fw fa-save"></i>
-                            </button>
-                        </div>
+                                            @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                            <p class="text-danger py-4"> La contraseña debe tener entre 8 y 16 caracteres,
+                                                al menos un
+                                                dígito,
+                                                al menos una minúscula y al menos una mayúscula.
+                                                Puede tener otros símbolos.</p>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input id="password-confirm" type="password" class="form-control"
+                                                name="password_confirmation" placeholder="Confirmar contraseña">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block text-uppercase">
+                                    Actualizar
+                                    <i class="fa fa-fw fa-save"></i>
+                                </button>
+                            </div>
                     </form>
                 </div>
             </div>

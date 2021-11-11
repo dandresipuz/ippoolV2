@@ -21,7 +21,7 @@ class CreateClientesTable extends Migration
             $table->bigInteger('telefono');
             $table->string('canal');
             $table->string('email');
-            $table->unsignedBigInteger('usuario_id');
+            $table->unsignedBigInteger('usuario_id')->nullable();
             $table->foreign('usuario_id')->references('id')->on('users');
             $table->boolean('active')->default(1);
             $table->timestamps();

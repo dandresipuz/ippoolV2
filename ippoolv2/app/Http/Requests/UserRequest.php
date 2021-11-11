@@ -35,6 +35,7 @@ class UserRequest extends FormRequest
                 'active'        => 'required',
                 'empresa_id'    => 'required',
                 'area_id'       => 'required',
+                'password'      => 'min:8|regex:/(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/|confirmed',
             ];
         } else {
             // Create Form

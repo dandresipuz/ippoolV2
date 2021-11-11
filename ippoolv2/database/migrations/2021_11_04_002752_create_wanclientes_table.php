@@ -16,9 +16,9 @@ class CreateWanclientesTable extends Migration
         Schema::create('wanclientes', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('vprn')->unique();
-            $table->unsignedBigInteger('cliente_id');
+            $table->unsignedBigInteger('cliente_id')->nullable();
             $table->foreign('cliente_id')->references('id')->on('clientes');
-            $table->unsignedBigInteger('vlan_id');
+            $table->unsignedBigInteger('vlan_id')->nullable();
             $table->foreign('vlan_id')->references('id')->on('wansolarwinds');
             $table->timestamps();
         });
