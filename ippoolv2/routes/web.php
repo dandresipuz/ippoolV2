@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AreaController;
 use App\Http\Controllers\EmpresaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -29,3 +30,4 @@ Route::get('/admin', function () {
 
 Route::resource('admin/users', UserController::class)->names('admin.users');
 Route::resource('admin/empresas', EmpresaController::class)->names('admin.empresas');
+Route::resource('admin/areas', AreaController::class)->names('admin.areas');

@@ -24,7 +24,7 @@
                     <table class="table table-hover">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col">Nombre</th>
+                                <th scope="col">Empresa</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>

@@ -85,10 +85,10 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
-    'layout_dark_mode' => null,
+    'layout_dark_mode' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -129,7 +129,7 @@ return [
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-primary elevation-4',
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-white navbar-light',
+    'classes_topnav' => 'navbar-dark navbar-dark',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -226,11 +226,11 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
+        /* [
             'type'         => 'navbar-search',
             'text'         => 'search',
             'topnav_right' => true,
-        ],
+        ], */
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
@@ -256,11 +256,25 @@ return [
             'text'      => 'Gestionar usuarios',
             'route'     => 'admin.users.index',
             'icon'      => 'fas fa-fw fa-users',
+            'active'    => ['admin/users*']
         ],
         [
             'text'      => 'Gestionar Empresas',
             'route'     => 'admin.empresas.index',
             'icon'      => 'fas fa-fw fa-building',
+            'active'    => ['admin/empresas*']
+        ],
+        [
+            'text'      => 'Gestionar Áreas',
+            'route'     => 'admin.areas.index',
+            'icon'      => 'fas fa-fw fa-layer-group',
+            'active'    => ['admin/areas*']
+        ],
+        [
+            'text'      => 'Gestionar Clientes',
+            'route'     => 'admin.clientes.index',
+            'icon'      => 'fas fa-fw fa-layer-group',
+            'active'    => ['admin/areas*']
         ],
         [
             'text' => 'change_password',

@@ -55,7 +55,11 @@ class EmpresaController extends Controller
         $users = DB::table('users')->where('empresa_id', $empresa_id)
             ->where('active', 1)
             ->get();
+        $users_desactive = DB::table('users')->where('empresa_id', $empresa_id)
+            ->where('active', 0)
+            ->get();
         return view('admin.empresas.show')->with('empresa', $empresa)
+            ->with('users_desactive', $users_desactive)
             ->with('users', $users);
     }
 
