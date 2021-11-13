@@ -30,7 +30,7 @@ class User extends Authenticatable
         'login',
         'email',
         'password',
-        'empresa_id',
+        'aliado_id',
         'area_id',
         'perfil',
         'active',
@@ -70,9 +70,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\Area');
     }
-    public function empresa()
+
+    public function aliado()
     {
-        return $this->belongsTo('App\Models\Empresa');
+        return $this->belongsTo('App\Models\Aliado');
     }
     public function cliente()
     {

@@ -33,7 +33,7 @@ class UserRequest extends FormRequest
                 'email'         => 'required|email|unique:users,email,' . $this->id,
                 'perfil'        => 'required',
                 'active'        => 'required',
-                'empresa_id'    => 'required',
+                'aliado_id'    => 'required',
                 'area_id'       => 'required',
                 'password'      => 'min:8|regex:/(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/|confirmed',
             ];
@@ -47,7 +47,7 @@ class UserRequest extends FormRequest
                 'email'         => 'required|email|unique:users',
                 'password'      => 'required|min:8|regex:/(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/|confirmed',
                 'perfil'        => 'required',
-                'empresa_id'    => 'required',
+                'aliado_id'    => 'required',
                 'area_id'       => 'required',
             ];
         }
@@ -61,7 +61,7 @@ class UserRequest extends FormRequest
             'login.required'         => 'El campo "Login" es obligatorio.',
             'email.required'         => 'El campo "Email" es obligatorio.',
             'perfil.required'        => 'Debe seleccionar un perfil',
-            'empresa_id.required'    => 'Debe seleccionar una empresa',
+            'aliado_id.required'     => 'Debe seleccionar un aliado',
             'area_id.required'       => 'Debe seleccionar un area',
         ];
     }

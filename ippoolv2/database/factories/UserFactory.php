@@ -36,7 +36,7 @@ class UserFactory extends Factory
             'email'             => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password'          => bcrypt('Consulta1234'),
-            'empresa_id'        => $this->faker->numberBetween($min = 1, $max = 4),
+            'aliado_id'         => $this->faker->numberBetween($min = 1, $max = 4),
             'area_id'           => $this->faker->numberBetween($min = 1, $max = 13),
             'remember_token'    => Str::random(10),
             'created_at'        => now(),

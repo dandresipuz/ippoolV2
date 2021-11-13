@@ -88,7 +88,7 @@ return [
     'layout_fixed_sidebar' => true,
     'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
-    'layout_dark_mode' => true,
+    'layout_dark_mode' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -259,10 +259,10 @@ return [
             'active'    => ['admin/users*']
         ],
         [
-            'text'      => 'Gestionar Empresas',
-            'route'     => 'admin.empresas.index',
+            'text'      => 'Gestionar Aliados',
+            'route'     => 'admin.aliados.index',
             'icon'      => 'fas fa-fw fa-building',
-            'active'    => ['admin/empresas*']
+            'active'    => ['admin/aliados*']
         ],
         [
             'text'      => 'Gestionar Áreas',
@@ -273,8 +273,8 @@ return [
         [
             'text'      => 'Gestionar Clientes',
             'route'     => 'admin.clientes.index',
-            'icon'      => 'fas fa-fw fa-layer-group',
-            'active'    => ['admin/areas*']
+            'icon'      => 'fas fa-fw fa-industry',
+            'active'    => ['admin/clientes*']
         ],
         [
             'text' => 'change_password',

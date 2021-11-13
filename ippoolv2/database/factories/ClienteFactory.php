@@ -24,7 +24,7 @@ class ClienteFactory extends Factory
     public function definition()
     {
 
-        $nit        = $this->faker->unique(true)->numberBetween($min = 1111111, $max = 9999999);
+        $nit        = $this->faker->unique(true)->numberBetween($min = 111111111, $max = 999999999);
         $nombre     = $this->faker->company();
         $contacto   = $this->faker->name();
         $telefono   = $this->faker->numberBetween($min = 3101000000, $max = 3202000000);

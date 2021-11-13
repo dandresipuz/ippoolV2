@@ -16,6 +16,7 @@ class Wansolarwind extends Model
      */
     protected $fillable = [
         'vlanid',
+        'vprn',
         'redwanuno',
         'redwandos',
         'ipbogrtdntres',
@@ -23,10 +24,11 @@ class Wansolarwind extends Model
         'ipbog41000',
         'ipboggcdos',
         'estado',
+        'cliente_id'
     ];
 
-    public function wancliente()
+    public function cliente()
     {
-        return $this->hasOne('App\Models\Wancliente');
+        return $this->belongsTo('App\Models\Cliente');
     }
 }

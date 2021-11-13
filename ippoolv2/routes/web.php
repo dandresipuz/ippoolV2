@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\AliadoController;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\EmpresaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Models\Cliente;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,5 +32,6 @@ Route::get('/admin', function () {
 });
 
 Route::resource('admin/users', UserController::class)->names('admin.users');
-Route::resource('admin/empresas', EmpresaController::class)->names('admin.empresas');
+Route::resource('admin/aliados', AliadoController::class)->names('admin.aliados');
 Route::resource('admin/areas', AreaController::class)->names('admin.areas');
+Route::resource('admin/clientes', ClienteController::class)->names('admin.clientes');

@@ -6,18 +6,18 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="card-header">
-                <h1><i class="fa fa-fw fa-user-plus"></i> Crear usuario</h1>
+                <h1><i class="fa fa-fw fa-user-plus"></i> Crear cliente</h1>
             </div>
             <nav aria-label="breadcrumb" class="pt-3">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="{{ route('admin.users.index') }}">
-                            <i class="fa fa-fw fa-th-list"></i> Lista de usuarios
+                        <a href="{{ route('admin.clientes.index') }}">
+                            <i class="fa fa-fw fa-th-list"></i> Lista de clientes
                         </a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
                         <i class="fa fa-pen"></i>
-                        Crear Usuario
+                        Crear cliente
                     </li>
                 </ol>
             </nav>
@@ -124,15 +124,15 @@
                         </div>
 
                         <div class="form-group">
-                            <select name="aliado_id" class="form-control @error('aliado_id') is-invalid @enderror">
-                                <option value="">Seleccionar aliado...</option>
-                                @foreach ($aliados as $aliado)
-                                    <option value="{{ $aliado->id }}" @if ($aliado->id == old('aliado_id')) selected @endif>{{ $aliado->nombre }}
+                            <select name="empresa_id" class="form-control @error('empresa_id') is-invalid @enderror">
+                                <option value="">Seleccionar empresa...</option>
+                                @foreach ($empresas as $empresa)
+                                    <option value="{{ $empresa->id }}" @if ($empresa->id == old('empresa_id')) selected @endif>{{ $empresa->nombre }}
                                     </option>
                                 @endforeach
                             </select>
 
-                            @error('aliado_id')
+                            @error('empresa_id')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

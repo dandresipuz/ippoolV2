@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
         $user->email        = 'diegoandres.ipuz@fractalia.es';
         $user->password     = bcrypt('Pa$$w0rd2021*');
         $user->perfil       = 'Admin';
-        $user->empresa_id   = 1;
+        $user->aliado_id   = 1;
         $user->area_id      = 11;
         $user->save();
     }

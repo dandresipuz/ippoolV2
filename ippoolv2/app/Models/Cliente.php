@@ -37,4 +37,8 @@ class Cliente extends Model
     {
         return $this->hasMany('App\Models\Wancliente');
     }
+    public function wansolarwind()
+    {
+        return $this->hasMany('App\Models\Wansolawind');
+    }
 }

@@ -121,15 +121,15 @@
                         </div>
 
                         <div class="form-group">
-                            <select name="empresa_id" class="form-control @error('empresa_id') is-invalid @enderror">
-                                <option value="">Seleccionar empresa...</option>
-                                @foreach ($empresas as $empresa)
-                                    <option value="{{ $empresa->id }}" @if ($empresa->id == old('empresa_id', $user->empresa_id)) selected @endif>{{ $empresa->nombre }}
+                            <select name="aliado_id" class="form-control @error('aliado_id') is-invalid @enderror">
+                                <option value="">Seleccionar aliado...</option>
+                                @foreach ($aliados as $aliado)
+                                    <option value="{{ $aliado->id }}" @if ($aliado->id == old('aliado_id', $user->aliado_id)) selected @endif>{{ $aliado->nombre }}
                                     </option>
                                 @endforeach
                             </select>
 
-                            @error('empresa_id')
+                            @error('aliado_id')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

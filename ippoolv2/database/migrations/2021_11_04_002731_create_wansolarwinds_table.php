@@ -16,6 +16,7 @@ class CreateWansolarwindsTable extends Migration
         Schema::create('wansolarwinds', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('vlanid')->unique();
+            $table->unsignedBigInteger('vprn')->unique();
             $table->string('redwanuno');
             $table->string('redwandos');
             $table->string('ipbogrtdntres');
@@ -23,6 +24,8 @@ class CreateWansolarwindsTable extends Migration
             $table->string('ipbog41000');
             $table->string('ipboggcdos');
             $table->boolean('estado')->default(0);
+            $table->unsignedBigInteger('cliente_id')->nullable();
+            $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->timestamps();
         });
     }

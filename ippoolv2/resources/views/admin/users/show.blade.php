@@ -49,8 +49,8 @@
                             <td>{{ $user->telefono }}</td>
                         </tr>
                         <tr>
-                            <th>Empresa:</th>
-                            <td>{{ $user->empresa->nombre }}</td>
+                            <th>Aliado:</th>
+                            <td>{{ $user->aliado->nombre }}</td>
                         </tr>
                         <tr>
                             <th>Área</th>

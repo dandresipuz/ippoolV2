@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Area;
-use App\Models\User;
-use App\Models\Empresa;
+use App\Models\User;;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use App\Models\Aliado;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -29,9 +30,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        $empresas = Empresa::all();
+        $aliados = Aliado::all();
         $areas    = Area::all();
-        return view('admin.users.create')->with("empresas", $empresas)
+        return view('admin.users.create')->with("aliados", $aliados)
             ->with('areas', $areas);
     }
 
@@ -66,10 +67,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $empresas = Empresa::all();
+        $aliados = Aliado::all();
         $areas    = Area::all();
         return view('admin.users.edit')->with('user', $user)
-            ->with("empresas", $empresas)
+            ->with("aliados", $aliados)
             ->with('areas', $areas);
     }
 
@@ -88,9 +89,9 @@ class UserController extends Controller
         $user->email            = $request->email;
         $user->telefono         = $request->telefono;
         $user->perfil           = $request->perfil;
-        $user->empresa_id       = $request->empresa_id;
+        $user->aliado_id        = $request->aliado_id;
         $user->area_id          = $request->area_id;
-        $user->password         = $request->password;
+        $user->password         = bcrypt($request->password);
         if ($user->active == 2) { //Pregunta si es 2 se pasa a 0
             $user->active = 0;
         } else {

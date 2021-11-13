@@ -25,8 +25,8 @@ class CreateUsersTable extends Migration
             $table->string('perfil')->default('Consulta');
             $table->boolean('active')->default(1);
             $table->rememberToken();
-            $table->unsignedBigInteger('empresa_id')->nullable();
-            $table->foreign('empresa_id')->references('id')->on('empresas');
+            $table->unsignedBigInteger('aliado_id')->nullable();
+            $table->foreign('aliado_id')->references('id')->on('aliados');
             $table->unsignedBigInteger('area_id')->nullable();
             $table->foreign('area_id')->references('id')->on('areas');
             $table->foreignId('current_team_id')->nullable();

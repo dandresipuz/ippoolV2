@@ -25,6 +25,7 @@ class WansolarwindFactory extends Factory
     {
 
         $vlanid        = $this->faker->unique(true)->numberBetween($min = 1100, $max = 40000);
+        $vprn          = $this->faker->unique(true)->numberBetween($min = 500000000, $max = 599999999);
         $redwanuno     = $this->faker->unique(true)->ipv4();
         $redwandos     = $this->faker->unique(true)->ipv4();
         $ipbogrtdntres = $this->faker->unique(true)->ipv4();
@@ -36,6 +37,7 @@ class WansolarwindFactory extends Factory
 
         return [
             'vlanid'        => $vlanid,
+            'vprn'          => $vprn,
             'redwanuno'     => $redwanuno,
             'redwandos'     => $redwandos,
             'ipbogrtdntres' => $ipbogrtdntres,

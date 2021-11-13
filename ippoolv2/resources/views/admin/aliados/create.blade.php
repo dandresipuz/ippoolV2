@@ -6,18 +6,18 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="card-header">
-                <h1><i class="fa fa-fw fa-building"></i> Crear empresa</h1>
+                <h1><i class="fa fa-fw fa-building"></i> Crear aliado</h1>
             </div>
             <nav aria-label="breadcrumb" class="pt-3">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="{{ route('admin.empresas.index') }}">
-                            <i class="fa fa-fw fa-th-list"></i> Lista de empresas
+                        <a href="{{ route('admin.aliados.index') }}">
+                            <i class="fa fa-fw fa-th-list"></i> Lista de aliados
                         </a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
                         <i class="fa fa-pen"></i>
-                        Crear Empresa
+                        Crear aliado
                     </li>
                 </ol>
             </nav>
@@ -31,7 +31,7 @@
         <div class="col-md-6 offset-md-3">
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('admin.empresas.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.aliados.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <input type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre"
