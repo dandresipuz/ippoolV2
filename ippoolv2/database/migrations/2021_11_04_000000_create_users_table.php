@@ -29,6 +29,8 @@ class CreateUsersTable extends Migration
             $table->foreign('aliado_id')->references('id')->on('aliados');
             $table->unsignedBigInteger('area_id')->nullable();
             $table->foreign('area_id')->references('id')->on('areas');
+            $table->unsignedBigInteger('centralizador_id')->nullable();
+            $table->foreign('centralizador_id')->references('id')->on('centralizadores');
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();

@@ -32,6 +32,7 @@ class User extends Authenticatable
         'password',
         'aliado_id',
         'area_id',
+        'centralizador_id',
         'perfil',
         'active',
     ];
@@ -66,6 +67,11 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public function centralizador()
+    {
+        return $this->belongsTo('App\Models\Centralizador');
+    }
+
     public function area()
     {
         return $this->belongsTo('App\Models\Area');
@@ -75,8 +81,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\Aliado');
     }
-    public function cliente()
+    public function empresa()
     {
-        return $this->hasMany('App\Models\Cliente');
+        return $this->hasMany('App\Models\Empresa');
     }
 }

@@ -38,6 +38,7 @@ class UserFactory extends Factory
             'password'          => bcrypt('Consulta1234'),
             'aliado_id'         => $this->faker->numberBetween($min = 1, $max = 4),
             'area_id'           => $this->faker->numberBetween($min = 1, $max = 13),
+            'centralizador_id'  => $this->faker->numberBetween($min = 1, $max = 13),
             'remember_token'    => Str::random(10),
             'created_at'        => now(),
         ];
