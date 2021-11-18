@@ -17,10 +17,10 @@ class Ipaddress extends Model
     protected $fillable = [
         'ipaddress',
         'estado',
-        'cliente_id',
+        'empresa_id',
     ];
-    public function cliente()
+    public function empresa()
     {
-        return $this->belongsTo('App\Models\Cliente');
+        return $this->belongsTo('App\Models\Empresa');
     }
 }

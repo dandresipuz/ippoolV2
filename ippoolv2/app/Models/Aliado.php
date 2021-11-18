@@ -18,8 +18,20 @@ class Aliado extends Model
         'active'
     ];
 
+    // Relación uno a muchos
     public function user()
     {
         return $this->hasMany('App\Models\User');
+    }
+
+    // Relación muchos a muchos
+    public function centralizador()
+    {
+        return $this->belongsToMany('App\Models\Centralizador');
+    }
+
+    public function area()
+    {
+        return $this->belongsToMany('App\Models\Area');
     }
 }

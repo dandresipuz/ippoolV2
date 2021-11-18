@@ -19,10 +19,21 @@ class Centralizador extends Model
         'apellido',
         'telefono',
         'email',
+        'tipo_doc',
+        'documento',
+        'documento',
+        'active',
+
     ];
 
     public function user()
     {
         return $this->hasMany('App\Models\User');
+    }
+
+    // Relación muchos a muchos
+    public function aliado()
+    {
+        return $this->belongsToMany('App\Models\Aliado');
     }
 }

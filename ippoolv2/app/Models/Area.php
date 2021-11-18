@@ -22,4 +22,9 @@ class Area extends Model
     {
         return $this->hasMany('App\Models\User');
     }
+
+    public function aliado()
+    {
+        return $this->belongsToMany('App\Models\Aliado');
+    }
 }
