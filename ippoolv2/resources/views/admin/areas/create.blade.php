@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="card-header">
-                <h1><i class="fa fa-fw fa-building"></i> Crear área</h1>
+                <h1><i class="fa fa-fw fa-layer-group"></i> Crear área</h1>
             </div>
             <nav aria-label="breadcrumb" class="pt-3">
                 <ol class="breadcrumb">

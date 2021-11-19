@@ -253,28 +253,34 @@ return [
         ],
         ['header' => 'ADMINISTRADOR'],
         [
-            'text'      => 'Gestionar usuarios',
-            'route'     => 'admin.users.index',
-            'icon'      => 'fas fa-fw fa-users',
-            'active'    => ['admin/users*']
-        ],
-        [
-            'text'      => 'Gestionar Aliados',
-            'route'     => 'admin.aliados.index',
-            'icon'      => 'fas fa-fw fa-building',
-            'active'    => ['admin/aliados*']
-        ],
-        [
-            'text'      => 'Gestionar Áreas',
-            'route'     => 'admin.areas.index',
-            'icon'      => 'fas fa-fw fa-layer-group',
-            'active'    => ['admin/areas*']
-        ],
-        [
-            'text'      => 'Gestionar Clientes',
-            'route'     => 'admin.clientes.index',
-            'icon'      => 'fas fa-fw fa-industry',
-            'active'    => ['admin/clientes*']
+            'text'    => 'Gestión',
+            'icon'    => 'fas fa-fw fa-toolbox',
+            'submenu' => [
+                [
+                    'text'      => 'Gestionar usuarios',
+                    'route'     => 'admin.users.index',
+                    'icon'      => 'fas fa-fw fa-users',
+                    'active'    => ['admin/users*']
+                ],
+                [
+                    'text'      => 'Gestionar Aliados',
+                    'route'     => 'admin.aliados.index',
+                    'icon'      => 'fas fa-fw fa-building',
+                    'active'    => ['admin/aliados*']
+                ],
+                [
+                    'text'      => 'Gestionar Áreas',
+                    'route'     => 'admin.areas.index',
+                    'icon'      => 'fas fa-fw fa-layer-group',
+                    'active'    => ['admin/areas*']
+                ],
+                [
+                    'text'      => 'Gestionar Empresas',
+                    'route'     => 'admin.empresas.index',
+                    'icon'      => 'fas fa-fw fa-industry',
+                    'active'    => ['admin/empresas*']
+                ],
+            ]
         ],
         [
             'text' => 'change_password',

@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cliente;
+use App\Models\Empresa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\ClienteRequest;
-use App\Models\Wancliente;
+use App\Http\Requests\EmpresaRequest;
 
-class ClienteController extends Controller
+class EmpresaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +16,8 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $clientes = Cliente::paginate(10);
-        return view('admin.clientes.index')->with('clientes', $clientes);
+        $empresas = Empresa::paginate(10);
+        return view('admin.empresas.index')->with('empresas', $empresas);
     }
 
     /**
@@ -28,7 +27,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        return view('admin.clientes.create');
+        return view('admin.empresas.create');
     }
 
     /**
@@ -37,9 +36,10 @@ class ClienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ClienteRequest $request)
+    public function store(EmpresaRequest $request)
     {
-        //
+        $empresa = Empresa::create($request->all());
+        return redirect()->route('admin.empresas.index')->with('message', 'La empresa ' . $empresa->empresa . ' fue creada con éxito.');
     }
 
     /**
@@ -48,14 +48,16 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Cliente $cliente)
+    public function show(Empresa $empresa)
     {
-        $cliente_id = $cliente->id;
-        $vprns = DB::table('wansolarwinds')->where('cliente_id', $cliente_id)->get();
-        $ips = DB::table('ipaddresses')->where('cliente_id', $cliente_id)->get();
+        $empresa_id = $empresa->id;
+        $vprns = DB::table('wansolarwinds')->where('empresa_id', $empresa_id)->get();
+        $ips = DB::table('ipaddresses')->where('empresa_id', $empresa_id)->get();
+        $services = DB::table('idservices')->where('empresa_id', $empresa_id)->get();
 
-        return view('admin.clientes.show')->with('cliente', $cliente)
+        return view('admin.empresas.show')->with('empresa', $empresa)
             ->with('vprns', $vprns)
+            ->with('services', $services)
             ->with('ips', $ips);
     }
 

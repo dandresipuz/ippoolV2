@@ -34,4 +34,4 @@ Route::get('/admin', function () {
 Route::resource('admin/users', UserController::class)->names('admin.users');
 Route::resource('admin/aliados', AliadoController::class)->names('admin.aliados');
 Route::resource('admin/areas', AreaController::class)->names('admin.areas');
-Route::resource('admin/clientes', ClienteController::class)->names('admin.clientes');
+Route::resource('admin/empresas', EmpresaController::class)->names('admin.empresas');

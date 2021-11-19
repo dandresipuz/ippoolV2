@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(30)->create();
         \App\Models\Empresa::factory(100)->create();
         \App\Models\Ipaddress::factory(100)->create();
+        \App\Models\Idservice::factory(50)->create();
         \App\Models\Wansolarwind::factory(100)->create();
     }
 }
