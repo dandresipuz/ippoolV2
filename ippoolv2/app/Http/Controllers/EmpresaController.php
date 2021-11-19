@@ -67,9 +67,9 @@ class EmpresaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Empresa $empresa)
     {
-        //
+        return view('admin.empresas.edit')->with('empresa', $empresa);
     }
 
     /**
@@ -79,9 +79,22 @@ class EmpresaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EmpresaRequest $request, Empresa $empresa)
     {
-        //
+        $empresa->empresa          = $request->empresa;
+        $empresa->tipo_doc         = $request->tipo_doc;
+        $empresa->documento        = $request->documento;
+        $empresa->segmento         = $request->segmento;
+        $empresa->usuario_id       = $request->usuario_id;
+        if ($empresa->active == 2) { //Pregunta si es 2 se pasa a 0
+            $empresa->active = 0;
+        } else {
+            $empresa->active = $request->active; //Si no se queda en 1
+        }
+
+        if ($empresa->save()) {
+            return redirect()->route('admin.empresas.index')->with('message', 'La empresa ' . $empresa->empresa . ' fue actualizada con éxito.');
+        }
     }
 
     /**
@@ -90,8 +103,21 @@ class EmpresaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Empresa $empresa)
     {
-        //
+        $id_empresa = $empresa->id;
+
+        $ipaddresses = DB::table('ipaddresses')->where('empresa_id', $id_empresa)
+            ->update(['empresa_id' => NULL]);
+
+        $wansolarwinds = DB::table('wansolarwinds')->where('empresa_id', $id_empresa)
+            ->update(['empresa_id' => NULL]);
+
+        $idservices = DB::table('idservices')->where('empresa_id', $id_empresa)
+            ->update(['empresa_id' => NULL]);
+
+        if ($empresa->delete()) {
+            return redirect()->route('admin.empresas.index')->with('message', 'La empresa: ' . $empresa->empresa . ' fue eliminada con exito con Exito!.');
+        }
     }
 }

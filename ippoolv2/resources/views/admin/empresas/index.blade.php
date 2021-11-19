@@ -17,8 +17,8 @@
             <table class="table table-hover">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">Tipo de documento</th>
-                        <th scope="col">Documento</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Tipo de documento</th>
+                        <th scope="col" class="d-none d-sm-table-cell">Documento</th>
                         <th scope="col">Empresa</th>
                         <th scope="col">Segmento</th>
                         <th scope="col"></th>
@@ -27,8 +27,8 @@
                 <tbody>
                     @foreach ($empresas as $empresa)
                         <tr @if ($empresa->active == 0) class="table table-danger" @else class="table" @endif>
-                            <td>{{ $empresa->tipo_doc }}</td>
-                            <td>{{ $empresa->documento }}</td>
+                            <td class="d-none d-sm-table-cell">{{ $empresa->tipo_doc }}</td>
+                            <td class="d-none d-sm-table-cell">{{ $empresa->documento }}</td>
                             <td>{{ $empresa->empresa }}</td>
                             <td>{{ $empresa->segmento }}</td>
                             <td width="110px">

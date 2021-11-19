@@ -237,10 +237,10 @@ return [
         ],
 
         // Sidebar items:
-        [
+        /* [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
-        ],
+        ], */
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
@@ -257,25 +257,31 @@ return [
             'icon'    => 'fas fa-fw fa-toolbox',
             'submenu' => [
                 [
-                    'text'      => 'Gestionar usuarios',
+                    'text'      => 'Usuarios',
                     'route'     => 'admin.users.index',
                     'icon'      => 'fas fa-fw fa-users',
                     'active'    => ['admin/users*']
                 ],
                 [
-                    'text'      => 'Gestionar Aliados',
+                    'text'      => 'Centralizadores',
+                    'route'     => 'admin.users.index',
+                    'icon'      => 'fas fa-fw fa-users',
+                    'active'    => ['admin/users*']
+                ],
+                [
+                    'text'      => 'Aliados',
                     'route'     => 'admin.aliados.index',
                     'icon'      => 'fas fa-fw fa-building',
                     'active'    => ['admin/aliados*']
                 ],
                 [
-                    'text'      => 'Gestionar Áreas',
+                    'text'      => 'Áreas',
                     'route'     => 'admin.areas.index',
                     'icon'      => 'fas fa-fw fa-layer-group',
                     'active'    => ['admin/areas*']
                 ],
                 [
-                    'text'      => 'Gestionar Empresas',
+                    'text'      => 'Empresas',
                     'route'     => 'admin.empresas.index',
                     'icon'      => 'fas fa-fw fa-industry',
                     'active'    => ['admin/empresas*']

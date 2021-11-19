@@ -98,7 +98,7 @@
                                 <option value="0" @if (old('active', $user->active) == 0) selected @endif>Inactivo</option>
                             </select>
 
-                            @error('slider')
+                            @error('active')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

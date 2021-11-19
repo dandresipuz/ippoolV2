@@ -28,7 +28,7 @@ class EmpresaRequest extends FormRequest
             return [
                 'empresa'       => 'required',
                 'tipo_doc'      => 'required',
-                'documento'     => 'required|numeric|unique:empresas,documento' . $this->id,
+                'documento'     => 'required|numeric|unique:empresas,documento,' . $this->id,
                 'segmento'      => 'required',
                 'active'        => 'required',
                 'usuario_id'    => 'required',
