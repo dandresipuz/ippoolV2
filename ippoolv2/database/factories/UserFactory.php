@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Aliado;
+use App\Models\Area;
+use App\Models\Centralizador;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -29,16 +32,21 @@ class UserFactory extends Factory
         $lastname   = $this->faker->lastName();
 
         return [
-            'nombre'            => $this->faker->firstName(),
-            'apellido'          => $this->faker->lastName(),
+            'nombre'            => $name,
+            'apellido'          => $lastname,
+            'tipo_doc'          => $this->faker->randomElement($array = array('CC')),
+            'documento'         => $this->faker->numberBetween($min = 100000, $max = 9999999999),
             'telefono'          => $this->faker->numberBetween($min = 3101000000, $max = 3202000000),
             'login'             => $name . '.' . $lastname,
             'email'             => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password'          => bcrypt('Consulta1234'),
-            'aliado_id'         => $this->faker->numberBetween($min = 1, $max = 4),
-            'area_id'           => $this->faker->numberBetween($min = 1, $max = 13),
-            'centralizador_id'  => $this->faker->numberBetween($min = 1, $max = 13),
+            'aliado_id'         => Aliado::all()->random()->id,
+            'area_id'           => Area::all()->random()->id,
+            'centralizador_id'  => Centralizador::all()->random()->id,
+            // 'aliado_id'         => $this->faker->numberBetween($min = 1, $max = 4),
+            // 'area_id'           => $this->faker->numberBetween($min = 1, $max = 13),
+            // 'centralizador_id'  => $this->faker->numberBetween($min = 1, $max = 13),
             'remember_token'    => Str::random(10),
             'created_at'        => now(),
         ];

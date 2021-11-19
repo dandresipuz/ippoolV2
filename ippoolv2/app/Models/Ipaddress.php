@@ -17,6 +17,7 @@ class Ipaddress extends Model
     protected $fillable = [
         'ipaddress',
         'estado',
+        'service',
         'empresa_id',
     ];
     public function empresa()

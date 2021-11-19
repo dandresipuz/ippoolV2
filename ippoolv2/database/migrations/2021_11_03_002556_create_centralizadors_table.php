@@ -15,6 +15,13 @@ class CreateCentralizadorsTable extends Migration
     {
         Schema::create('centralizadors', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string('apellido');
+            $table->string('tipo_doc');
+            $table->bigInteger('documento');
+            $table->string('email')->unique();
+            $table->bigInteger('telefono');
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }

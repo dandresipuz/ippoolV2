@@ -18,7 +18,6 @@ class Idservice extends Model
 
         'service',
         'empresa_id',
-        'usuario_id',
         'active',
     ];
 

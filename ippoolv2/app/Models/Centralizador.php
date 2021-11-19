@@ -21,7 +21,6 @@ class Centralizador extends Model
         'email',
         'tipo_doc',
         'documento',
-        'documento',
         'active',
 
     ];
@@ -29,11 +28,5 @@ class Centralizador extends Model
     public function user()
     {
         return $this->hasMany('App\Models\User');
-    }
-
-    // Relación muchos a muchos
-    public function aliado()
-    {
-        return $this->belongsToMany('App\Models\Aliado');
     }
 }

@@ -24,8 +24,8 @@ class CreateWansolarwindsTable extends Migration
             $table->string('ipbog41000');
             $table->string('ipboggcdos');
             $table->boolean('estado')->default(0);
-            $table->unsignedBigInteger('cliente_id')->nullable();
-            $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->unsignedBigInteger('empresa_id')->nullable();
+            $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->timestamps();
         });
     }

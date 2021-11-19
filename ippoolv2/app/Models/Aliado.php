@@ -23,15 +23,4 @@ class Aliado extends Model
     {
         return $this->hasMany('App\Models\User');
     }
-
-    // Relación muchos a muchos
-    public function centralizador()
-    {
-        return $this->belongsToMany('App\Models\Centralizador');
-    }
-
-    public function area()
-    {
-        return $this->belongsToMany('App\Models\Area');
-    }
 }

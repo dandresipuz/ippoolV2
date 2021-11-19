@@ -15,6 +15,10 @@ class CreateIdservicesTable extends Migration
     {
         Schema::create('idservices', function (Blueprint $table) {
             $table->id();
+            $table->string('service');
+            $table->unsignedBigInteger('empresa_id')->nullable();
+            $table->foreign('empresa_id')->references('id')->on('empresas');
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }

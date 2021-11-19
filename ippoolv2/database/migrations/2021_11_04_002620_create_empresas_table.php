@@ -15,6 +15,13 @@ class CreateEmpresasTable extends Migration
     {
         Schema::create('empresas', function (Blueprint $table) {
             $table->id();
+            $table->string('tipo_doc');
+            $table->bigInteger('documento')->unique();
+            $table->string('empresa');
+            $table->string('segmento');
+            $table->unsignedBigInteger('usuario_id')->nullable();
+            $table->foreign('usuario_id')->references('id')->on('users');
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }
