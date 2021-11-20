@@ -36,8 +36,4 @@ class Empresa extends Model
     {
         return $this->hasMany('App\Models\Wansolawind');
     }
-    public function idservice()
-    {
-        return $this->hasMany('App\Models\Idservice');
-    }
 }

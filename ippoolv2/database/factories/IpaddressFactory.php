@@ -28,12 +28,15 @@ class IpaddressFactory extends Factory
         $service             = $this->faker->randomElement($array = array('Internet', 'Troncal SIP', 'Datos', 'Global LAN'));
         $estado             = $this->faker->randomElement($array = array(0, 1));
         // $empresa_id         = $this->faker->numberBetween($min = 1, $max = 99);
+        $idservice    = $this->faker->numberBetween($min = 100000, $max = 9999999999);
+
         $empresa_id         = Empresa::all()->random()->id;
 
         $created_at         = now();
         return [
             'ipaddress'     => $ipaddress,
             'service'       => $service,
+            'idservice'     => $idservice,
             'estado'        => $estado,
             'empresa_id'    => $empresa_id,
             'created_at'    => $created_at,

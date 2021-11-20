@@ -45,7 +45,7 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $user = User::create($request->all());
-        return redirect()->route('admin.users.index')->with('message', 'El usuario ' . $user->nombre . ' ' . $user->apellido . ' fue creado con éxito.');
+        return redirect()->route('admin.users.index')->with('message', 'El centralizador ' . $user->nombre . ' ' . $user->apellido . ' fue creado con éxito.');
     }
 
     /**
@@ -85,6 +85,8 @@ class UserController extends Controller
     {
         $user->nombre           = $request->nombre;
         $user->apellido         = $request->apellido;
+        $user->tipo_doc         = $request->tipo_doc;
+        $user->documento        = $request->documento;
         $user->login            = $request->login;
         $user->email            = $request->email;
         $user->telefono         = $request->telefono;

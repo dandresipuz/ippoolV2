@@ -31,6 +31,10 @@
                             <td>{{ $empresa->empresa }}</td>
                         </tr>
                         <tr>
+                            <th>Documento</th>
+                            <td>{{ $empresa->tipo_doc }} {{ $empresa->documento }}</td>
+                        </tr>
+                        <tr>
                             <th>Tipo de canal</th>
                             <td>
                                 <h5><span class="badge badge-info"><i class="fas fa-fw fa-broadcast-tower"></i> Datos
@@ -40,7 +44,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>Estado:</th>
+                            <th>Estado</th>
                             <td>
                                 @if ($empresa->active == 1)
                                     <button class="btn btn-sm btn-success">
@@ -57,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-6">
             <div class="accordion" id="ip">
                 <div class="card">
                     <div class="card-header" id="headingTwo">
@@ -71,71 +75,30 @@
 
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#ip">
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6 offset-md-3">
-                                    @if (COUNT($services) != 0)
-                                        <table class="table table-hover">
-                                            <thead class="thead-dark">
-                                                <tr>
-                                                    <th scope="col">IP Loopback</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($ips as $ip)
-                                                    <tr>
-                                                        <td>{{ $ip->ipaddress }}</td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    @else
-                                        <p class="text-center">No existen registros para la empresa
-                                            {{ $empresa->empresa }}.</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="accordion" id="service">
-                <div class="card">
-                    <div class="card-header" id="headingThree">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
-                                data-target="#collapseThree" aria-expanded="true" aria-controls="collapseOne">
-                                Listado de Servicios Asignados
-                            </button>
-                        </h2>
-                    </div>
+                            @if (COUNT($ips) != 0)
+                                <table class="table table-hover">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">IP Loopback</th>
+                                            <th scope="col">ID de servicio</th>
+                                            <th scope="col">Servicio</th>
 
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#service">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6 offset-md-3">
-                                    @if (COUNT($services) != 0)
-                                        <table class="table table-hover">
-                                            <thead class="thead-dark">
-                                                <tr>
-                                                    <th scope="col">Servicios</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($services as $service)
-                                                    <tr>
-                                                        <td>{{ $service->service }}</td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    @else
-                                        <p class="text-center">No existen registros para la empresa
-                                            {{ $empresa->empresa }}.</p>
-                                    @endif
-                                </div>
-                            </div>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($ips as $ip)
+                                            <tr>
+                                                <td>{{ $ip->ipaddress }}</td>
+                                                <td>{{ $ip->idservice }}</td>
+                                                <td>{{ $ip->service }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            @else
+                                <p class="text-center">No existen registros para la empresa
+                                    {{ $empresa->empresa }}.</p>
+                            @endif
                         </div>
                     </div>
                 </div>

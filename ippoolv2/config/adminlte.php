@@ -264,9 +264,9 @@ return [
                 ],
                 [
                     'text'      => 'Centralizadores',
-                    'route'     => 'admin.users.index',
-                    'icon'      => 'fas fa-fw fa-users',
-                    'active'    => ['admin/users*']
+                    'route'     => 'admin.centralizadores.index',
+                    'icon'      => 'fas fa-fw fa-address-card',
+                    'active'    => ['admin/centralizadores*']
                 ],
                 [
                     'text'      => 'Aliados',

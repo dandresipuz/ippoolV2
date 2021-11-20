@@ -53,11 +53,9 @@ class EmpresaController extends Controller
         $empresa_id = $empresa->id;
         $vprns = DB::table('wansolarwinds')->where('empresa_id', $empresa_id)->get();
         $ips = DB::table('ipaddresses')->where('empresa_id', $empresa_id)->get();
-        $services = DB::table('idservices')->where('empresa_id', $empresa_id)->get();
 
         return view('admin.empresas.show')->with('empresa', $empresa)
             ->with('vprns', $vprns)
-            ->with('services', $services)
             ->with('ips', $ips);
     }
 
@@ -111,9 +109,6 @@ class EmpresaController extends Controller
             ->update(['empresa_id' => NULL]);
 
         $wansolarwinds = DB::table('wansolarwinds')->where('empresa_id', $id_empresa)
-            ->update(['empresa_id' => NULL]);
-
-        $idservices = DB::table('idservices')->where('empresa_id', $id_empresa)
             ->update(['empresa_id' => NULL]);
 
         if ($empresa->delete()) {

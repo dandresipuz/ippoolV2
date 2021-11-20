@@ -58,6 +58,31 @@
                         </div>
 
                         <div class="form-group">
+                            <select name="tipo_doc" class="form-control @error('tipo_doc') is-invalid @enderror">
+                                <option value="">Seleccionar tipo de documento</option>
+                                <option value="NIT" @if (old('tipo_doc', $user->tipo_doc) == 'NIT') selected @endif>NIT</option>
+                                <option value="CC" @if (old('tipo_doc', $user->tipo_doc) == 'CC') selected @endif>CC</option>
+                            </select>
+
+                            @error('tipo_doc')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <input type="number" class="form-control @error('documento') is-invalid @enderror"
+                                name="documento" value="{{ old('documento', $user->documento) }}" autofocus>
+
+                            @error('documento')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
                             <input type="hidden" name="login" value="{{ $user->login }}">
                             <input id="login" type="text" class="form-control @error('login') is-invalid @enderror"
                                 name="login" value="{{ old('login', $user->login) }}" disabled readonly>

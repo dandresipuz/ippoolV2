@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('nombre');
             $table->string('apellido');
             $table->string('tipo_doc');
-            $table->bigInteger('documento');
+            $table->bigInteger('documento')->unique();
             $table->bigInteger('telefono');
             $table->string('login')->unique();
             $table->string('email')->unique();

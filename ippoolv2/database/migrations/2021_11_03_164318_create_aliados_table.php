@@ -15,7 +15,7 @@ class CreateAliadosTable extends Migration
     {
         Schema::create('aliados', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('nombre')->unique();
             $table->boolean('active')->default(1);
             $table->timestamps();
         });

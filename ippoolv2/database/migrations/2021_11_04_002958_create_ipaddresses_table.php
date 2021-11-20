@@ -15,8 +15,9 @@ class CreateIpaddressesTable extends Migration
     {
         Schema::create('ipaddresses', function (Blueprint $table) {
             $table->id();
-            $table->string('ipaddress');
-            $table->string('service');
+            $table->string('ipaddress')->unique();
+            $table->string('service')->nullable();
+            $table->string('idservice')->unique()->nullable();
             $table->boolean('estado')->default(0);
             $table->unsignedBigInteger('empresa_id')->nullable();
             $table->foreign('empresa_id')->references('id')->on('empresas');

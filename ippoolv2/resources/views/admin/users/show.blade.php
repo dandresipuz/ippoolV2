@@ -37,6 +37,10 @@
                             <td>{{ $user->nombre . ' ' . $user->apellido }}</td>
                         </tr>
                         <tr>
+                            <th>Documento</th>
+                            <td>{{ $user->tipo_doc }} {{ $user->documento }}</td>
+                        </tr>
+                        <tr>
                             <th>Login:</th>
                             <td>{{ $user->login }}</td>
                         </tr>
@@ -47,6 +51,10 @@
                         <tr>
                             <th>Teléfono:</th>
                             <td>{{ $user->telefono }}</td>
+                        </tr>
+                        <tr>
+                            <th>Centralizador:</th>
+                            <td>{{ $user->centralizador->nombre }} {{ $user->centralizador->apellido }}</td>
                         </tr>
                         <tr>
                             <th>Aliado:</th>

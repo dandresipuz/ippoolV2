@@ -18,6 +18,7 @@ class Ipaddress extends Model
         'ipaddress',
         'estado',
         'service',
+        'idservice',
         'empresa_id',
     ];
     public function empresa()

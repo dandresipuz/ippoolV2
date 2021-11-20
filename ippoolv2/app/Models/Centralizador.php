@@ -22,7 +22,6 @@ class Centralizador extends Model
         'tipo_doc',
         'documento',
         'active',
-
     ];
 
     public function user()

@@ -18,7 +18,7 @@ class CreateCentralizadorsTable extends Migration
             $table->string('nombre');
             $table->string('apellido');
             $table->string('tipo_doc');
-            $table->bigInteger('documento');
+            $table->bigInteger('documento')->unique();
             $table->string('email')->unique();
             $table->bigInteger('telefono');
             $table->boolean('active')->default(1);
