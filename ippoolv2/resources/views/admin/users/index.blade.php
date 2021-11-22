@@ -35,7 +35,7 @@
                             <td class="d-none d-sm-table-cell">{{ $user->perfil }}</td>
                             <td class="d-none d-sm-table-cell">{{ $user->aliado->nombre }}</td>
                             <td class="d-none d-sm-table-cell">{{ $user->area->nombre }}</td>
-                            <td width="110px">
+                            <td>
                                 <a href="{{ url('admin/users/' . $user->id) }}" class="btn btn-xs btn-primary"><i
                                         class="fa fa-fw fa-info-circle"></i></a>
                                 <a href="{{ url('admin/users/' . $user->id . '/edit') }}"

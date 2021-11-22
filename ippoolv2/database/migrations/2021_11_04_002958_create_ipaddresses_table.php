@@ -18,7 +18,7 @@ class CreateIpaddressesTable extends Migration
             $table->string('ipaddress')->unique();
             $table->string('service')->nullable();
             $table->string('idservice')->unique()->nullable();
-            $table->boolean('estado')->default(0);
+            $table->boolean('estado')->default(1);
             $table->unsignedBigInteger('empresa_id')->nullable();
             $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->timestamps();

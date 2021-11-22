@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Empresa;
 use App\Models\Wansolarwind;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -33,6 +34,7 @@ class WansolarwindFactory extends Factory
         $ipbog41000    = $this->faker->unique(true)->ipv4();
         $ipboggcdos    = $this->faker->unique(true)->ipv4();
         $estado        = $this->faker->randomElement($array = array(0, 1));
+        $empresa_id    = Empresa::all()->random()->id;
         $created_at    = now();
 
         return [
@@ -45,6 +47,7 @@ class WansolarwindFactory extends Factory
             'ipbog41000'    => $ipbog41000,
             'ipboggcdos'    => $ipboggcdos,
             'estado'        => $estado,
+            'empresa_id'    => $empresa_id,
             'created_at'    => $created_at,
         ];
     }

@@ -61,6 +61,8 @@ class UserRequest extends FormRequest
         return [
             'nombre.required'        => 'El campo "Nombre" es obligatorio.',
             'apellido.required'      => 'El campo "Apellido" es obligatorio.',
+            'tipo_doc'               => 'Debe seleccionar un tipo de documento',
+            'documento'              => 'El campo "Documento" es obligatorio',
             'telefono.required'      => 'El campo "Teléfono" es obligatorio.',
             'login.required'         => 'El campo "Login" es obligatorio.',
             'email.required'         => 'El campo "Email" es obligatorio.',

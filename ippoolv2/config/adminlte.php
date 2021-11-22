@@ -286,6 +286,12 @@ return [
                     'icon'      => 'fas fa-fw fa-industry',
                     'active'    => ['admin/empresas*']
                 ],
+                [
+                    'text'      => 'IP Address',
+                    'route'     => 'admin.ipaddresses.index',
+                    'icon'      => 'fas fa-fw fa-network-wired',
+                    'active'    => ['admin/ipaddresses*']
+                ],
             ]
         ],
         [
