@@ -253,7 +253,7 @@ return [
         ],
         ['header' => 'ADMINISTRADOR'],
         [
-            'text'    => 'Gestión',
+            'text'    => 'Administración',
             'icon'    => 'fas fa-fw fa-toolbox',
             'submenu' => [
                 [
@@ -291,6 +291,12 @@ return [
                     'route'     => 'admin.ipaddresses.index',
                     'icon'      => 'fas fa-fw fa-network-wired',
                     'active'    => ['admin/ipaddresses*']
+                ],
+                [
+                    'text'      => 'Wan SolarWinds',
+                    'route'     => 'admin.wansolarwinds.index',
+                    'icon'      => 'fas fa-fw fa-server',
+                    'active'    => ['admin/wansolarwinds*']
                 ],
             ]
         ],

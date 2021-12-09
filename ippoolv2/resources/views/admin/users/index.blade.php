@@ -2,6 +2,12 @@
 
 @section('title', 'Lista de usuarios')
 
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css">
+@endsection
+
 @section('content_header')
     <h1><i class="fa fa-fw fa-th-list"></i> Lista de usuarios</h1>
 @stop
@@ -14,49 +20,69 @@
                 usuario</a>
         </div>
         <div class="card-body">
-            <table class="table table-hover">
+            <table class="table table-hover" id="usertable">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col" class="d-none d-sm-table-cell">Nombre</th>
-                        <th scope="col" class="d-none d-sm-table-cell">Login</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Login</th>
                         <th scope="col">Email</th>
-                        <th scope="col" class="d-none d-sm-table-cell">Perfil</th>
-                        <th scope="col" class="d-none d-sm-table-cell">Aliado</th>
-                        <th scope="col" class="d-none d-sm-table-cell">Area</th>
+                        <th scope="col">Perfil</th>
+                        <th scope="col">Aliado</th>
+                        <th scope="col">Area</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($users as $user)
                         <tr @if ($user->active == 0) class="table table-danger" @else class="table" @endif>
-                            <td class="d-none d-sm-table-cell">{{ $user->nombre . ' ' . $user->apellido }}</td>
-                            <td class="d-none d-sm-table-cell">{{ $user->login }}</td>
+                            <td>{{ $user->nombre . ' ' . $user->apellido }}</td>
+                            <td>{{ $user->login }}</td>
                             <td>{{ $user->email }}</td>
-                            <td class="d-none d-sm-table-cell">{{ $user->perfil }}</td>
-                            <td class="d-none d-sm-table-cell">{{ $user->aliado->nombre }}</td>
-                            <td class="d-none d-sm-table-cell">{{ $user->area->nombre }}</td>
+                            <td>{{ $user->perfil }}</td>
+                            <td>{{ $user->aliado->nombre }}</td>
+                            <td>{{ $user->area->nombre }}</td>
                             <td>
-                                <a href="{{ url('admin/users/' . $user->id) }}" class="btn btn-xs btn-primary"><i
+                                <a href="{{ url('admin/users/' . $user->id) }}" class="btn btn-sm btn-primary"><i
                                         class="fa fa-fw fa-info-circle"></i></a>
                                 <a href="{{ url('admin/users/' . $user->id . '/edit') }}"
-                                    class="btn btn-xs btn-warning"><i class="fa fa-fw fa-pen"></i></a>
-                                <form action="{{ url('admin/users/' . $user->id) }}" method="POST" class="d-inline">
+                                    class="btn btn-sm btn-warning"><i class="fa fa-fw fa-pen"></i></a>
+                                {{-- <form action="{{ url('admin/users/' . $user->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('delete')
                                     <button type="button" class="btn btn-xs btn-danger btn-delete"><i
                                             class="fa fa-fw fa-trash-alt"></i></button>
-                                </form>
+                                </form> --}}
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-            {{ $users->links('pagination::bootstrap-4') }}
         </div>
     </div>
 @stop
 @section('js')
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        $('#usertable').DataTable({
+            responsive: true,
+            autoWidth: false,
+            "language": {
+                "lengthMenu": "Mostrar _MENU_ registros por página",
+                "zeroRecords": "No se encontró ningún registro",
+                "info": "Mostrando la página _PAGE_ de _PAGES_",
+                "infoEmpty": "No se encontraron registros",
+                "infoFiltered": "(Filtrado de _MAX_ registros en total)",
+                "search": "Buscar: ",
+                "paginate": {
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            }
+        });
         $(document).ready(function() {
             @if (session('message'))
                 Swal.fire({

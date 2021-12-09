@@ -16,7 +16,7 @@ class AliadoController extends Controller
      */
     public function index()
     {
-        $aliados = Aliado::paginate(10);
+        $aliados = Aliado::all();
         return view('admin.aliados.index')->with('aliados', $aliados);
     }
 

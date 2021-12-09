@@ -16,7 +16,7 @@ class IpaddressController extends Controller
      */
     public function index()
     {
-        $ipaddresses = Ipaddress::paginate(10);
+        $ipaddresses = Ipaddress::all();
         return view('admin.ipaddresses.index')->with('ipaddresses', $ipaddresses);
     }
 
@@ -27,7 +27,6 @@ class IpaddressController extends Controller
      */
     public function create()
     {
-        // $empresas = Empresa::all()->where('active', 1);
         $empresas = DB::table('empresas')->where('active', 1)
             ->orderBy('empresa', 'asc')
             ->get();
@@ -60,6 +59,47 @@ class IpaddressController extends Controller
     public function show(Ipaddress $ipaddress)
     {
         return view('admin.ipaddresses.show')->with('ipaddress', $ipaddress);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Ipaddress $ipaddress)
+    {
+        $empresas = DB::table('empresas')->where('active', 1)
+            ->orderBy('empresa', 'asc')
+            ->get();
+        return view('admin.ipaddresses.edit')->with('ipaddress', $ipaddress)
+            ->with("empresas", $empresas);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(IpaddressRequest $request, Ipaddress $ipaddress)
+    {
+
+        $ipaddress->ipaddress        = $request->ipaddress;
+        $ipaddress->service          = $request->service;
+        $ipaddress->idservice        = $request->idservice;
+        if ($ipaddress->service != null) {
+            $ipaddress->estado = 1;
+        } else {
+            $ipaddress->estado = 0;
+        }
+
+        $ipaddress->empresa_id       = $request->empresa_id;
+
+        if ($ipaddress->save()) {
+            return redirect()->route('admin.ipaddresses.index')->with('message', 'La dirección ' . $ipaddress->ipaddress . ' fue asignada con éxito.');
+        }
     }
 
     /**

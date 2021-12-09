@@ -16,7 +16,7 @@ class CentralizadorController extends Controller
      */
     public function index()
     {
-        $centralizadores = Centralizador::paginate(10);
+        $centralizadores = Centralizador::all();
         return view('admin.centralizadores.index')->with('centralizadores', $centralizadores);
     }
 
