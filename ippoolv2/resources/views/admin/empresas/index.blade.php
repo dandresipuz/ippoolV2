@@ -18,6 +18,9 @@
             <a class="btn btn-sm btn-success" href="{{ route('admin.empresas.create') }}"><i class="fa fa-fw fa-plus"></i>
                 Agregar
                 empresa</a>
+            <a class="btn btn-sm btn-info" href="{{ url('generate/excel/empresas') }}"><i
+                    class="fas fa-fw fa-file-excel"></i>
+                Exportar Excel</a>
         </div>
         <div class="card-body">
             <table class="table table-hover" id="empresatable">

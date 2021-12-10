@@ -1,23 +1,23 @@
-<table class="table table-hover">
-    <thead class="thead-dark">
+<table>
+    <thead>
         <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Tipo de documento</th>
-            <th scope="col"># de Documento</th>
-            <th scope="col">Teléfono</th>
-            <th scope="col">Estado</th>
-            <th scope="col">Login</th>
-            <th scope="col">Email</th>
-            <th scope="col">Perfil</th>
-            <th scope="col">Aliado</th>
-            <th scope="col">Centralizador</th>
-            <th scope="col">Area</th>
-            <th scope="col">Fecha de creación</th>
+            <th>Nombre</th>
+            <th>Tipo de documento</th>
+            <th># de Documento</th>
+            <th>Teléfono</th>
+            <th>Estado</th>
+            <th>Login</th>
+            <th>Email</th>
+            <th>Perfil</th>
+            <th>Aliado</th>
+            <th>Centralizador</th>
+            <th>Area</th>
+            <th>Fecha de creación</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($users as $user)
-            <tr @if ($user->active == 0) class="table table-danger" @else class="table" @endif>
+            <tr>
                 <td>{{ $user->nombre . ' ' . $user->apellido }}</td>
                 <td>{{ $user->tipo_doc }}</td>
                 <td>{{ $user->documento }}</td>

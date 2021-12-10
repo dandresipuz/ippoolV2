@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\EmpresaExport;
 use App\Models\Empresa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -114,5 +115,10 @@ class EmpresaController extends Controller
         if ($empresa->delete()) {
             return redirect()->route('admin.empresas.index')->with('message', 'La empresa: ' . $empresa->empresa . ' fue eliminada con exito con Exito!.');
         }
+    }
+
+    public function excel()
+    {
+        return \Excel::download(new EmpresaExport, 'allempresas.xlsx');
     }
 }
