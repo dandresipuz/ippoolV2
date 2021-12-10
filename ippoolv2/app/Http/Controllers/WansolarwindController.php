@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\WansolarwindRequest;
 use App\Models\Empresa;
 use App\Models\Wansolarwind;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Exports\WansolarwindExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Requests\WansolarwindRequest;
 
 class WansolarwindController extends Controller
 {
@@ -74,5 +76,10 @@ class WansolarwindController extends Controller
         if ($wansolarwind->save()) {
             return redirect()->route('admin.wansolarwinds.index')->with('message', 'El recurso ' . $wansolarwind->vlanid . ' fue asignado con éxito.');
         }
+    }
+
+    public function excel()
+    {
+        return Excel::download(new WansolarwindExport, 'allwan.xlsx');
     }
 }

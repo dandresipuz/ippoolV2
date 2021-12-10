@@ -14,6 +14,9 @@
 @section('content')
     <div class="card">
         <div class="card-header py-4">
+            <a class="btn btn-sm btn-info" href="{{ url('generate/excel/wansolarwinds') }}"><i
+                    class="fas fa-fw fa-file-excel"></i>
+                Exportar Excel</a>
         </div>
         <div class="card-body">
             <table class="table table-hover" id="wantable">

@@ -34,6 +34,6 @@ class Empresa extends Model
     }
     public function wansolarwind()
     {
-        return $this->hasMany('App\Models\Wansolawind');
+        return $this->hasMany('App\Models\Wansolarwind');
     }
 }

@@ -31,7 +31,7 @@
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->perfil }}</td>
                 <td>{{ $user->aliado->nombre }}</td>
-                <td>{{ $user->centralizador->nombre }}</td>
+                <td>{{ $user->centralizador->nombre }} {{ $user->centralizador->apellido }}</td>
                 <td>{{ $user->area->nombre }}</td>
                 <td>{{ $user->created_at }}</td>
             </tr>

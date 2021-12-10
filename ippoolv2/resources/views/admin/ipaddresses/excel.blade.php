@@ -17,14 +17,14 @@
                 @if ($ip->empresa_id != null)
                     <td>{{ $ip->idservice }}</td>
                 @else
-                    <td></td>
+                    <td> </td>
                 @endif
-                @if ($ip->active == 0)
-                    <td>Inactivo</td>
+                @if ($ip->estado == 0)
+                    <td>Libre</td>
                 @else
-                    <td>Activo</td>
+                    <td>Ocupada</td>
                 @endif
-                <td>{{ $ip->empresa_id }}</td>
+                <td>{{ $ip->empresa->empresa ?? '' }}</td>
                 <td>{{ $ip->created_at }}</td>
             </tr>
         @endforeach
