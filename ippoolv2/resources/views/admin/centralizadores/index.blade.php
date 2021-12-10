@@ -19,6 +19,9 @@
                     class="fa fa-fw fa-plus"></i>
                 Agregar
                 centralizador</a>
+            <a class="btn btn-sm btn-info" href="{{ url('generate/excel/centralizadores') }}"><i
+                    class="fas fa-fw fa-file-excel"></i>
+                Exportar Excel</a>
         </div>
         <div class="card-body">
             <table class="table table-hover" id="centralizadortable">

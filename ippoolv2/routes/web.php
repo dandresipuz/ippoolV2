@@ -43,3 +43,4 @@ Route::resource('admin/centralizadores', CentralizadorController::class)->names(
 Route::resource('admin/ipaddresses', IpaddressController::class)->names('admin.ipaddresses');
 Route::resource('admin/wansolarwinds', WansolarwindController::class)->names('admin.wansolarwinds');
 Route::get('generate/excel/users', 'App\Http\Controllers\UserController@excel');
+Route::get('generate/excel/centralizadores', 'App\Http\Controllers\CentralizadorController@excel');

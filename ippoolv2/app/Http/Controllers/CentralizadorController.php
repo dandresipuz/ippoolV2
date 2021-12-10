@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CentralizadorExport;
 use Illuminate\Http\Request;
 use App\Models\Centralizador;
 use Illuminate\Support\Facades\DB;
@@ -109,5 +110,10 @@ class CentralizadorController extends Controller
         if ($centralizador->delete()) {
             return redirect()->route('admin.centralizadores.index')->with('message', 'El centralizador: ' . $centralizador->nombre . ' ' . $centralizador->apellido . ' fue eliminado con exito con Exito!');
         }
+    }
+
+    public function excel()
+    {
+        return \Excel::download(new CentralizadorExport, 'centralizadores.xlsx');
     }
 }
