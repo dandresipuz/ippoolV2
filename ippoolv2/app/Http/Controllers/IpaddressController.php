@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\IpaddressExport;
 use App\Http\Requests\IpaddressRequest;
 use App\Models\Ipaddress;
 use Illuminate\Http\Request;
@@ -113,5 +114,10 @@ class IpaddressController extends Controller
         if ($ipaddress->delete()) {
             return redirect()->route('admin.ipaddresses.index')->with('message', 'La dirección IP ' . $ipaddress->ipaddress . ' fue eliminada con exito con Exito!');
         }
+    }
+
+    public function excel()
+    {
+        return \Excel::download(new IpaddressExport, 'allips.xlsx');
     }
 }

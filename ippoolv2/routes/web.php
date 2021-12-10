@@ -45,3 +45,4 @@ Route::resource('admin/wansolarwinds', WansolarwindController::class)->names('ad
 Route::get('generate/excel/users', 'App\Http\Controllers\UserController@excel');
 Route::get('generate/excel/centralizadores', 'App\Http\Controllers\CentralizadorController@excel');
 Route::get('generate/excel/empresas', 'App\Http\Controllers\EmpresaController@excel');
+Route::get('generate/excel/ipaddresses', 'App\Http\Controllers\IpaddressController@excel');
