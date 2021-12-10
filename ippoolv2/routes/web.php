@@ -8,7 +8,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AliadoController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\IpaddressController;
-use App\Http\Controllers\AddresourceController;
 use App\Http\Controllers\WansolarwindController;
 use App\Http\Controllers\CentralizadorController;
 
@@ -43,3 +42,4 @@ Route::resource('admin/empresas', EmpresaController::class)->names('admin.empres
 Route::resource('admin/centralizadores', CentralizadorController::class)->names('admin.centralizadores');
 Route::resource('admin/ipaddresses', IpaddressController::class)->names('admin.ipaddresses');
 Route::resource('admin/wansolarwinds', WansolarwindController::class)->names('admin.wansolarwinds');
+Route::get('generate/excel/users', 'App\Http\Controllers\UserController@excel');

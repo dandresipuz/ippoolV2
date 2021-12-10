@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UserExport;
 use App\Models\Area;
 use App\Models\User;;
 
@@ -121,5 +122,10 @@ class UserController extends Controller
         if ($user->delete()) {
             return redirect()->route('admin.users.index')->with('message', 'El usuario: ' . $user->nombre . ' ' . $user->apellido . ' fue eliminado con exito con Exito!. Sus registros fueron asignamos al Administrador');
         }
+    }
+
+    public function excel()
+    {
+        return \Excel::download(new UserExport, 'allusers.xlsx');
     }
 }
