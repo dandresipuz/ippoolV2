@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Centralizador;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\CentralizadorRequest;
+use App\Imports\CentralizadorImport;
 
 class CentralizadorController extends Controller
 {
@@ -115,5 +116,12 @@ class CentralizadorController extends Controller
     public function excel()
     {
         return \Excel::download(new CentralizadorExport, 'centralizadores.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        $file = $request->file('file');
+        \Excel::import(new CentralizadorImport, $file);
+        return redirect()->back()->with('message', 'Los centralizadores fueron importados con exito');
     }
 }
