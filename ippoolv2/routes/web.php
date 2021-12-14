@@ -42,8 +42,17 @@ Route::resource('admin/empresas', EmpresaController::class)->names('admin.empres
 Route::resource('admin/centralizadores', CentralizadorController::class)->names('admin.centralizadores');
 Route::resource('admin/ipaddresses', IpaddressController::class)->names('admin.ipaddresses');
 Route::resource('admin/wansolarwinds', WansolarwindController::class)->names('admin.wansolarwinds');
+
+// Export excel
 Route::get('generate/excel/users', 'App\Http\Controllers\UserController@excel');
 Route::get('generate/excel/centralizadores', 'App\Http\Controllers\CentralizadorController@excel');
 Route::get('generate/excel/empresas', 'App\Http\Controllers\EmpresaController@excel');
 Route::get('generate/excel/ipaddresses', 'App\Http\Controllers\IpaddressController@excel');
 Route::get('generate/excel/wansolarwinds', 'App\Http\Controllers\WansolarwindController@excel');
+
+// Import excel
+Route::post('import/excel/users', 'App\Http\Controllers\UserController@import');
+Route::post('import/excel/centralizadores', 'App\Http\Controllers\CentralizadorController@import');
+Route::post('import/excel/empresas', 'App\Http\Controllers\EmpresaController@import');
+Route::post('import/excel/ipaddresses', 'App\Http\Controllers\IpaddressController@import');
+Route::post('import/excel/wansolarwinds', 'App\Http\Controllers\WansolarwindController@import');
