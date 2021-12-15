@@ -7,6 +7,7 @@ use App\Models\Empresa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\EmpresaRequest;
+use App\Imports\EmpresaImport;
 
 class EmpresaController extends Controller
 {
@@ -120,5 +121,12 @@ class EmpresaController extends Controller
     public function excel()
     {
         return \Excel::download(new EmpresaExport, 'allempresas.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        $file = $request->file('file');
+        \Excel::import(new EmpresaImport, $file);
+        return redirect()->back()->with('message', 'Las empresas fueron importadas con exito');
     }
 }
