@@ -14,6 +14,18 @@
 @section('content')
     <div class="card">
         <div class="card-header py-4">
+
+            <form action="{{ url('import/excel/wansolarwinds') }}" method="POST" enctype="multipart/form-data"
+                class="d-inline">
+                @csrf
+                <input type="file" class="d-none" id="file" name="file"
+                    accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                <button type="button" class="btn btn-success btn-sm btn-excel">
+                    <i class="fas fa-fw fa-file-excel"></i>
+                    Importar Recursos
+                </button>
+            </form>
+
             <a class="btn btn-sm btn-info" href="{{ url('generate/excel/wansolarwinds') }}"><i
                     class="fas fa-fw fa-file-excel"></i>
                 Exportar Excel</a>
@@ -125,6 +137,12 @@
                         $(this).parent().submit();
                     }
                 });
+            });
+            $('.btn-excel').click(function(event) {
+                $('#file').click();
+            });
+            $('#file').change(function(event) {
+                $(this).parent().submit();
             });
         });
     </script>

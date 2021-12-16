@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Exports\WansolarwindExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\WansolarwindRequest;
+use App\Imports\WansolarwindImport;
 
 class WansolarwindController extends Controller
 {
@@ -81,5 +82,12 @@ class WansolarwindController extends Controller
     public function excel()
     {
         return Excel::download(new WansolarwindExport, 'allwan.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        $file = $request->file('file');
+        \Excel::import(new WansolarwindImport, $file);
+        return redirect()->back()->with('message', 'Los recursos fueron importados con exito');
     }
 }
