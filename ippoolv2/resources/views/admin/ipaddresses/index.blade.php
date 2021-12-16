@@ -19,6 +19,19 @@
                     class="fa fa-fw fa-plus"></i>
                 Agregar
                 IP</a>
+
+            <form action="{{ url('import/excel/ipaddresses') }}" method="POST" enctype="multipart/form-data"
+                class="d-inline">
+                @csrf
+                <input type="file" class="d-none" id="file" name="file"
+                    accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                <button type="button" class="btn btn-success btn-sm btn-excel">
+                    <i class="fas fa-fw fa-file-excel"></i>
+                    Importar IP's
+                </button>
+
+            </form>
+
             <a class="btn btn-sm btn-info" href="{{ url('generate/excel/ipaddresses') }}"><i
                     class="fas fa-fw fa-file-excel"></i>
                 Exportar Excel</a>
@@ -145,6 +158,12 @@
                         $(this).parent().submit();
                     }
                 });
+            });
+            $('.btn-excel').click(function(event) {
+                $('#file').click();
+            });
+            $('#file').change(function(event) {
+                $(this).parent().submit();
             });
         });
     </script>

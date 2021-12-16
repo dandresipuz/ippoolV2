@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\IpaddressExport;
 use App\Http\Requests\IpaddressRequest;
+use App\Imports\IpaddressImport;
 use App\Models\Ipaddress;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -119,5 +120,12 @@ class IpaddressController extends Controller
     public function excel()
     {
         return \Excel::download(new IpaddressExport, 'allips.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        $file = $request->file('file');
+        \Excel::import(new IpaddressImport, $file);
+        return redirect()->back()->with('message', 'Las IP\'s fueron importadas con exito');
     }
 }
