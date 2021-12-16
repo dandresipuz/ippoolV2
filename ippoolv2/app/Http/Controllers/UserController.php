@@ -96,7 +96,11 @@ class UserController extends Controller
         $user->perfil           = $request->perfil;
         $user->aliado_id        = $request->aliado_id;
         $user->area_id          = $request->area_id;
-        $user->password         = bcrypt($request->password);
+        if ($user->password != null) {
+            $user->password     = bcrypt($request->password);
+        } else {
+            unset($user->password);
+        }
         if ($user->active == 2) { //Pregunta si es 2 se pasa a 0
             $user->active = 0;
         } else {

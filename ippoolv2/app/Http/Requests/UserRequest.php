@@ -35,9 +35,10 @@ class UserRequest extends FormRequest
                 'email'         => 'required|email|unique:users,email,' . $this->id,
                 'perfil'        => 'required',
                 'active'        => 'required',
-                'aliado_id'    => 'required',
+                'aliado_id'     => 'required',
                 'area_id'       => 'required',
-                'password'      => 'min:8|regex:/(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/|confirmed',
+                // 'password'      => 'min:8|regex:/(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/|confirmed',
+
             ];
         } else {
             // Create Form
