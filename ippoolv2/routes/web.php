@@ -56,3 +56,18 @@ Route::post('import/excel/centralizadores', 'App\Http\Controllers\CentralizadorC
 Route::post('import/excel/empresas', 'App\Http\Controllers\EmpresaController@import');
 Route::post('import/excel/ipaddresses', 'App\Http\Controllers\IpaddressController@import');
 Route::post('import/excel/wansolarwinds', 'App\Http\Controllers\WansolarwindController@import');
+
+// Change password
+Route::get('profile/password', 'App\Http\Controllers\UserController@passwordForm');
+Route::post('profile/updatepassword', 'App\Http\Controllers\UserController@updatePassword');
+
+// Release Resource
+Route::get('release/empresas', 'App\Http\Controllers\EmpresaController@indexResource');
+Route::get('release/empresas/ipaddress/{id}/edit', 'App\Http\Controllers\EmpresaController@releaseResource');
+Route::get('release/empresas/wansolarwind/{id}/edit', 'App\Http\Controllers\EmpresaController@releaseVprnResource');
+Route::post('release/ipaddress', 'App\Http\Controllers\EmpresaController@updateResource');
+Route::post('release/wansolarwind', 'App\Http\Controllers\EmpresaController@updateVprn');
+
+// Add Resource
+Route::get('resource/ipaddresses', 'App\Http\Controllers\IpaddressController@addIndexResource');
+Route::get('resource/ipaddresses/{id}/edit', 'App\Http\Controllers\IpaddressController@addEditResource');

@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\EmpresaRequest;
 use App\Imports\EmpresaImport;
+use App\Models\Ipaddress;
+use App\Models\Wansolarwind;
 
 class EmpresaController extends Controller
 {
@@ -128,5 +130,52 @@ class EmpresaController extends Controller
         $file = $request->file('file');
         \Excel::import(new EmpresaImport, $file);
         return redirect()->back()->with('message', 'Las empresas fueron importadas con exito');
+    }
+
+    public function indexResource()
+    {
+        $vprns = DB::table('wansolarwinds')->where('estado', 1)->get();
+        $ips = DB::table('ipaddresses')->where('estado', 1)->get();
+        $empresas = DB::table('empresas')->where('active', 1)->get();
+
+        return view('release.index')->with('empresas', $empresas)
+            ->with('vprns', $vprns)
+            ->with('ips', $ips);
+    }
+
+    public function releaseResource($id)
+    {
+        $empresa = Empresa::find($id);
+        $vprns = DB::table('wansolarwinds')->where('empresa_id', $id)->get();
+        $ips = DB::table('ipaddresses')->where('empresa_id', $id)->get();
+
+        return view('release.edit')->with('empresa', $empresa)
+            ->with('vprns', $vprns)
+            ->with('ips', $ips);
+    }
+
+    public function releaseVprnResource($id)
+    {
+        $empresa = Empresa::find($id);
+        $vprns = DB::table('wansolarwinds')->where('empresa_id', $id)->get();
+        $ips = DB::table('ipaddresses')->where('empresa_id', $id)->get();
+
+        return view('release.editvprn')->with('empresa', $empresa)
+            ->with('vprns', $vprns)
+            ->with('ips', $ips);
+    }
+
+    public function updateResource(Request $request)
+    {
+        $ids = $request->ids;
+        Ipaddress::whereIn('id', $ids)->update(['estado' => 0, 'empresa_id' => null, 'service' => '']);
+        return redirect()->back()->with('message', 'Las direcciones IP fueron liberadas con exito');
+    }
+
+    public function updateVprn(Request $request)
+    {
+        $ids = $request->ids;
+        Wansolarwind::whereIn('id', $ids)->update(['estado' => 0, 'empresa_id' => null]);
+        return redirect()->back()->with('message', 'Los recursos fueron liberados con exito');
     }
 }

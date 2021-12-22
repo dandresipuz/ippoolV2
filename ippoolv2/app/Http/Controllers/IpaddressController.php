@@ -128,4 +128,15 @@ class IpaddressController extends Controller
         \Excel::import(new IpaddressImport, $file);
         return redirect()->back()->with('message', 'Las IP\'s fueron importadas con exito');
     }
+
+    public function addIndexResource()
+    {
+        $ipaddresses = Ipaddress::where('estado', 0)->get();
+        return view('gestion.ipaddresses.index')->with('ipaddresses', $ipaddresses);
+    }
+
+    public function addEditResource(Ipaddress $ipaddress)
+    {
+        return view('gestion.ipaddresses.edit')->with('ipaddress', $ipaddress);
+    }
 }

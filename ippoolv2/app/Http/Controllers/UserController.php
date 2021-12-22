@@ -12,6 +12,9 @@ use App\Imports\UserImport;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\ChangepasswordRequest;
 
 class UserController extends Controller
 {
@@ -140,5 +143,22 @@ class UserController extends Controller
         $file = $request->file('file');
         \Excel::import(new UserImport, $file);
         return redirect()->back()->with('message', 'Los usuarios fueron importados con exito');
+    }
+
+    public function passwordForm()
+    {
+        return view('profile.password');
+    }
+
+    public function updatePassword(ChangepasswordRequest $request)
+    {
+        if (Hash::check($request->oldpassword, Auth::user()->password)) {
+            $user = new User;
+            $user->where('id', '=', Auth::user()->id)
+                ->update(['password' => bcrypt($request->password)]);
+            return redirect()->route('admin.users.index')->with('message', 'La contraseña fue cambiada con exito');
+        } else {
+            return redirect()->back()->with('error', 'La contraseña antigua es incorrecta');
+        }
     }
 }

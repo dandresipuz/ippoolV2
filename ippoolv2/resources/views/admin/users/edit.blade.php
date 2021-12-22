@@ -223,6 +223,7 @@
                                     <i class="fa fa-fw fa-save"></i>
                                 </button>
                             </div>
+                        </div>
                     </form>
                 </div>
             </div>

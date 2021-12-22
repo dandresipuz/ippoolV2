@@ -251,7 +251,7 @@ return [
             'url'         => 'admin',
             'icon'        => 'fas fa-fw fa-tachometer-alt',
         ],
-        ['header' => 'ADMINISTRADOR'],
+        // ['header' => 'ADMINISTRADOR'],
         [
             'text'    => 'Administración',
             'icon'    => 'fas fa-fw fa-toolbox',
@@ -301,8 +301,31 @@ return [
             ]
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
+            'text'    => 'Agregar recursos',
+            'icon'    => 'fas fa-fw fa-plus-square',
+            'submenu' => [
+                [
+                    'text'  => 'IP Address',
+                    'url' => 'resource/ipaddresses',
+                    'icon'  => 'fas fa-fw fa-network-wired',
+                    'active'    => ['resource/ipaddresses*']
+                ],
+                [
+                    'text'  => 'Wan Solarwinds',
+                    'route'     => 'admin.wansolarwinds.index',
+                    'active'    => ['admin/wansolarwinds*'],
+                    'icon'  => 'fas fa-fw fa-server',
+                ],
+            ],
+        ],
+        [
+            'text'      => 'Liberar Recursos',
+            'url'     => 'release/empresas',
+            'icon' => 'fas fa-fw fa-expand-alt',
+        ],
+        [
+            'text'      => 'Cambiar contraseña',
+            'url'     => 'profile/password',
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
