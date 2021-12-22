@@ -100,7 +100,8 @@ class IpaddressController extends Controller
         $ipaddress->empresa_id       = $request->empresa_id;
 
         if ($ipaddress->save()) {
-            return redirect()->route('admin.ipaddresses.index')->with('message', 'La dirección ' . $ipaddress->ipaddress . ' fue asignada con éxito.');
+            // return redirect()->route('admin.ipaddresses.index')->with('message', 'La dirección ' . $ipaddress->ipaddress . ' fue asignada con éxito.');
+            return redirect()->back()->with('message', 'La dirección ' . $ipaddress->ipaddress . ' fue asignada con éxito.');
         }
     }
 
@@ -135,8 +136,31 @@ class IpaddressController extends Controller
         return view('gestion.ipaddresses.index')->with('ipaddresses', $ipaddresses);
     }
 
-    public function addEditResource(Ipaddress $ipaddress)
+    public function addEditResource($id)
     {
-        return view('gestion.ipaddresses.edit')->with('ipaddress', $ipaddress);
+        $ipaddress = Ipaddress::find($id);
+        $empresas = DB::table('empresas')->where('active', 1)
+            ->orderBy('empresa', 'asc')
+            ->get();
+        return view('gestion.ipaddresses.edit')->with('ipaddress', $ipaddress)
+            ->with("empresas", $empresas);
     }
+
+    /* public function addUpdateResource(IpaddressRequest $request, $id)
+    {
+        $ipaddress = Ipaddress::find($id);
+        $ipaddress->ipaddress        = $request->ipaddress;
+        $ipaddress->service          = $request->service;
+        $ipaddress->idservice        = $request->idservice;
+        if ($ipaddress->service != null) {
+            $ipaddress->estado = 1;
+        } else {
+            $ipaddress->estado = 0;
+        }
+        $ipaddress->empresa_id       = $request->empresa_id;
+
+        if ($ipaddress->save()) {
+            return redirect()->view('gestion.ipaddresses.index')->with('message', 'La dirección ' . $ipaddress->ipaddress . ' fue asignada con éxito.');
+        }
+    } */
 }

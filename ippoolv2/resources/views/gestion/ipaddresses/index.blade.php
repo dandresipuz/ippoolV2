@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Lista de IP\'s')
+@section('title', 'Lista de IP\'s disponibles')
 
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
@@ -31,7 +31,7 @@
                 </thead>
                 <tbody>
                     @foreach ($ipaddresses as $ipaddress)
-                        <tr @if ($ipaddress->estado == 1) class="table table-danger" @else class="table" @endif>
+                        <tr class="table">
                             <td>{{ $ipaddress->ipaddress }}</td>
                             <td class="d-none d-sm-table-cell">
                                 @if ($ipaddress->estado == 1)
