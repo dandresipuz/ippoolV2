@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Lista de empresas')
+@section('title', 'Lista VPRN')
 
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
@@ -9,35 +9,47 @@
 @endsection
 
 @section('content_header')
-    <h1><i class="fa fa-fw fa-th-list"></i> Lista de empresas</h1>
+
 @stop
 @section('content')
     <div class="card">
         <div class="card-header py-4">
-            <a class="btn btn-sm btn-success" href="{{ url('lista/empresas/create') }}"><i class="fa fa-fw fa-plus"></i>
-                Agregar
-                empresa</a>
+            <h1><i class="fa fa-fw fa-th-list"></i> Lista VPRN</h1>
         </div>
         <div class="card-body">
-            <table class="table table-hover" id="empresatable">
+            <table class="table table-hover" id="wantable">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col" class="d-none d-sm-table-cell">Tipo de documento</th>
-                        <th scope="col" class="d-none d-sm-table-cell">Documento</th>
-                        <th scope="col">Empresa</th>
-                        <th scope="col">Segmento</th>
+                        <th scope="col">VLAN ID</th>
+                        <th scope="col">VPRN</th>
+                        <th scope="col">Red Wan 1</th>
+                        <th scope="col">Red Wan 2</th>
+                        <th scope="col">BOG-RTDN-3</th>
+                        <th scope="col">BOG-GC-1</th>
+                        <th scope="col">BOG-41000</th>
+                        <th scope="col">BOG-GC-2</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($empresas as $empresa)
-                        <tr @if ($empresa->active == 0) class="table table-danger" @else class="table" @endif>
-                            <td class="d-none d-sm-table-cell">{{ $empresa->tipo_doc }}</td>
-                            <td class="d-none d-sm-table-cell">{{ $empresa->documento }}</td>
-                            <td>{{ $empresa->empresa }}</td>
-                            <td>{{ $empresa->segmento }}</td>
-                            <td width="50px">
-                                <a href="{{ url('lista/empresas/' . $empresa->id) }}" class="btn btn-sm btn-primary"><i
+                    @foreach ($wans as $wan)
+                        <tr class="table">
+                            <td>{{ $wan->vlanid }}</td>
+                            <td>
+                                @if ($wan->empresa_id != null)
+                                    {{ $wan->vprn }}
+                                @else
+                                    <p class="text-success">Sin asignación</p>
+                                @endif
+                            </td>
+                            <td>{{ $wan->redwanuno }}</td>
+                            <td>{{ $wan->redwandos }}</td>
+                            <td>{{ $wan->ipbogrtdntres }}</td>
+                            <td>{{ $wan->ipboggcuno }}</td>
+                            <td>{{ $wan->ipbog41000 }}</td>
+                            <td>{{ $wan->ipboggcdos }}</td>
+                            <td>
+                                <a href="{{ url('lista/wansolarwind/' . $wan->id) }}" class="btn btn-sm btn-primary"><i
                                         class="fa fa-fw fa-info-circle"></i></a>
                             </td>
                         </tr>
@@ -54,7 +66,7 @@
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        $('#empresatable').DataTable({
+        $('#wantable').DataTable({
             responsive: true,
             autoWidth: false,
             "language": {
@@ -69,17 +81,6 @@
                     "previous": "Anterior"
                 }
             }
-        });
-        $(document).ready(function() {
-            @if (session('message'))
-                Swal.fire({
-                // position: 'top-end',
-                title: 'Perfecto :) ',
-                text: "{{ session('message') }}",
-                confirmButtonColor: '#1e5f74',
-                confirmButtonText: 'Aceptar'
-                });
-            @endif
         });
     </script>
 @endsection

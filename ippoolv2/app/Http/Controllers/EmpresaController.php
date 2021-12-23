@@ -120,17 +120,22 @@ class EmpresaController extends Controller
         }
     }
 
+    // Exportar a Excel
+
     public function excel()
     {
         return \Excel::download(new EmpresaExport, 'allempresas.xlsx');
     }
 
+    //Importar desde Excel
     public function import(Request $request)
     {
         $file = $request->file('file');
         \Excel::import(new EmpresaImport, $file);
         return redirect()->back()->with('message', 'Las empresas fueron importadas con exito');
     }
+
+    // Liberar Ip's y VPRN
 
     public function indexResource()
     {
@@ -179,9 +184,36 @@ class EmpresaController extends Controller
         return redirect()->back()->with('message', 'Los recursos fueron liberados con exito');
     }
 
+    //
+
+    // Módulo consulta
+
     public function indexEmpresas()
     {
         $empresas = Empresa::all();
         return view('consulta.empresas.index')->with('empresas', $empresas);
     }
+
+    public function createEmpresa()
+    {
+        return view('consulta.empresas.create');
+    }
+
+    public function storeEmpresa(EmpresaRequest $request)
+    {
+        $empresa = Empresa::create($request->all());
+        return redirect()->route('consulta.empresas.index')->with('message', 'La empresa ' . $empresa->empresa . ' fue creada con éxito.');
+    }
+
+    public function showEmpresa($id)
+    {
+        $empresa = Empresa::find($id);
+        $vprns = DB::table('wansolarwinds')->where('empresa_id', $id)->get();
+        $ips = DB::table('ipaddresses')->where('empresa_id', $id)->get();
+        return view('consulta.empresas.show')->with('empresa', $empresa)
+            ->with('vprns', $vprns)
+            ->with('ips', $ips);
+    }
+
+    //
 }

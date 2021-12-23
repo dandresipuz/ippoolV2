@@ -107,4 +107,20 @@ class WansolarwindController extends Controller
         return view('gestion.wansolarwinds.edit')->with('wansolarwind', $wansolarwind)
             ->with("empresas", $empresas);
     }
+
+    // Módulo consultas
+
+    public function indexWansolarwinds()
+    {
+        $wans = DB::table('wansolarwinds')->where('estado', 1)
+            ->orderBy('id', 'asc')
+            ->get();
+        return view('consulta.wansolarwinds.index')->with('wans', $wans);
+    }
+
+    public function showWansolarwind($id)
+    {
+        $wansolarwind = Wansolarwind::find($id);
+        return view('consulta.wansolarwinds.show')->with('wansolarwind', $wansolarwind);
+    }
 }

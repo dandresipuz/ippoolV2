@@ -76,4 +76,10 @@ Route::get('resource/wansolarwinds/{id}/edit', 'App\Http\Controllers\Wansolarwin
 
 // Query module
 
-Route::get('lista/empresas', 'App\Http\Controllers\EmpresaController@indexEmpresas');
+Route::get('lista/empresas', 'App\Http\Controllers\EmpresaController@indexEmpresas')->name('consulta.empresas.index');
+Route::get('lista/empresas/create', 'App\Http\Controllers\EmpresaController@createEmpresa');
+Route::post('lista/empresas', 'App\Http\Controllers\EmpresaController@storeEmpresa');
+Route::get('lista/empresas/{id}', 'App\Http\Controllers\EmpresaController@showEmpresa');
+
+Route::get('lista/wansolarwind', 'App\Http\Controllers\WansolarwindController@indexWansolarwinds');
+Route::get('lista/wansolarwind/{id}', 'App\Http\Controllers\WansolarwindController@showWansolarwind');
