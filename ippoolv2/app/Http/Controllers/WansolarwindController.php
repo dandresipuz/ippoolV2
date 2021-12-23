@@ -75,7 +75,8 @@ class WansolarwindController extends Controller
 
 
         if ($wansolarwind->save()) {
-            return redirect()->route('admin.wansolarwinds.index')->with('message', 'El recurso ' . $wansolarwind->vlanid . ' fue asignado con éxito.');
+            // return redirect()->route('admin.wansolarwinds.index')->with('message', 'El recurso ' . $wansolarwind->vlanid . ' fue asignado con éxito.');
+            return redirect()->back()->with('message', 'El recurso ' . $wansolarwind->vlanid . ' fue asignado con éxito.');
         }
     }
 
@@ -89,5 +90,21 @@ class WansolarwindController extends Controller
         $file = $request->file('file');
         \Excel::import(new WansolarwindImport, $file);
         return redirect()->back()->with('message', 'Los recursos fueron importados con exito');
+    }
+
+    public function addIndexResource()
+    {
+        $wansolarwinds = Wansolarwind::where('estado', 0)->get();
+        return view('gestion.wansolarwinds.index')->with('wansolarwinds', $wansolarwinds);
+    }
+
+    public function addEditResource($id)
+    {
+        $wansolarwind = Wansolarwind::find($id);
+        $empresas = DB::table('empresas')->where('active', 1)
+            ->orderBy('empresa', 'asc')
+            ->get();
+        return view('gestion.wansolarwinds.edit')->with('wansolarwind', $wansolarwind)
+            ->with("empresas", $empresas);
     }
 }

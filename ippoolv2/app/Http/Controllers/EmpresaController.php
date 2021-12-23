@@ -178,4 +178,10 @@ class EmpresaController extends Controller
         Wansolarwind::whereIn('id', $ids)->update(['estado' => 0, 'empresa_id' => null]);
         return redirect()->back()->with('message', 'Los recursos fueron liberados con exito');
     }
+
+    public function indexEmpresas()
+    {
+        $empresas = Empresa::all();
+        return view('consulta.empresas.index')->with('empresas', $empresas);
+    }
 }

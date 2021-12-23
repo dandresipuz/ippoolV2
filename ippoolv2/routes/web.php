@@ -71,3 +71,9 @@ Route::post('release/wansolarwind', 'App\Http\Controllers\EmpresaController@upda
 // Add Resource
 Route::get('resource/ipaddresses', 'App\Http\Controllers\IpaddressController@addIndexResource');
 Route::get('resource/ipaddresses/{id}/edit', 'App\Http\Controllers\IpaddressController@addEditResource');
+Route::get('resource/wansolarwinds', 'App\Http\Controllers\WansolarwindController@addIndexResource');
+Route::get('resource/wansolarwinds/{id}/edit', 'App\Http\Controllers\WansolarwindController@addEditResource');
+
+// Query module
+
+Route::get('lista/empresas', 'App\Http\Controllers\EmpresaController@indexEmpresas');

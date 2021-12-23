@@ -145,22 +145,4 @@ class IpaddressController extends Controller
         return view('gestion.ipaddresses.edit')->with('ipaddress', $ipaddress)
             ->with("empresas", $empresas);
     }
-
-    /* public function addUpdateResource(IpaddressRequest $request, $id)
-    {
-        $ipaddress = Ipaddress::find($id);
-        $ipaddress->ipaddress        = $request->ipaddress;
-        $ipaddress->service          = $request->service;
-        $ipaddress->idservice        = $request->idservice;
-        if ($ipaddress->service != null) {
-            $ipaddress->estado = 1;
-        } else {
-            $ipaddress->estado = 0;
-        }
-        $ipaddress->empresa_id       = $request->empresa_id;
-
-        if ($ipaddress->save()) {
-            return redirect()->view('gestion.ipaddresses.index')->with('message', 'La dirección ' . $ipaddress->ipaddress . ' fue asignada con éxito.');
-        }
-    } */
 }

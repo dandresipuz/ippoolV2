@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Lista de IP\'s disponibles')
+@section('title', 'Lista WAN disponibles')
 
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
@@ -15,56 +15,42 @@
 @section('content')
     <div class="card">
         <div class="card-header py-4">
-            <h1><i class="fa fa-fw fa-th-list"></i> Lista de direcciones IP disponibles</h1>
+            <h1><i class="fa fa-fw fa-th-list"></i> Lista de WAN's disponibles</h1>
         </div>
         <div class="card-body">
-            <table class="table table-hover" id="iptable">
+            <table class="table table-hover" id="wantable">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">Dirección IP</th>
-                        <th scope="col" class="d-none d-sm-table-cell">Estado</th>
-                        <th scope="col">Servicio</th>
-                        <th scope="col" class="d-none d-sm-table-cell">ID de servicio</th>
-                        <th scope="col" class="d-none d-sm-table-cell">Empresa</th>
+                        <th scope="col">VLAN ID</th>
+                        <th scope="col">VPRN</th>
+                        <th scope="col">Red Wan 1</th>
+                        <th scope="col">Red Wan 2</th>
+                        <th scope="col">BOG-RTDN-3</th>
+                        <th scope="col">BOG-GC-1</th>
+                        <th scope="col">BOG-41000</th>
+                        <th scope="col">BOG-GC-2</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($ipaddresses as $ipaddress)
-                        <tr class="table">
-                            <td>{{ $ipaddress->ipaddress }}</td>
-                            <td class="d-none d-sm-table-cell">
-                                @if ($ipaddress->estado == 1)
-                                    <button type="button" class="btn btn-outline-danger">Ocupada <i
-                                            class="far fa-fw fa-sad-tear"></i></button>
-                                @else
-                                    <button type="button" class="btn btn-outline-success">Libre <i
-                                            class="fas fa-fw fa-laugh-wink"></i></button>
-                                @endif
-                            </td>
+                    @foreach ($wansolarwinds as $wan)
+                        <tr @if ($wan->estado == 1) class="table table-danger" @else class="table" @endif>
+                            <td>{{ $wan->vlanid }}</td>
                             <td>
-                                @if ($ipaddress->service != '')
-                                    {{ $ipaddress->service }}
+                                @if ($wan->empresa_id != null)
+                                    {{ $wan->vprn }}
                                 @else
                                     <p class="text-success">Sin asignación</p>
                                 @endif
                             </td>
-                            <td class="d-none d-sm-table-cell">
-                                @if ($ipaddress->service != '')
-                                    {{ $ipaddress->idservice }}
-                                @else
-                                    <p class="text-success">Sin asignación</p>
-                                @endif
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                @if ($ipaddress->empresa_id != null)
-                                    {{ $ipaddress->empresa->empresa }}
-                                @else
-                                    <p class="text-success">Sin asignación</p>
-                                @endif
-                            </td>
-                            <td width="50px">
-                                <a href="{{ url('resource/ipaddresses/' . $ipaddress->id . '/edit') }}"
+                            <td>{{ $wan->redwanuno }}</td>
+                            <td>{{ $wan->redwandos }}</td>
+                            <td>{{ $wan->ipbogrtdntres }}</td>
+                            <td>{{ $wan->ipboggcuno }}</td>
+                            <td>{{ $wan->ipbog41000 }}</td>
+                            <td>{{ $wan->ipboggcdos }}</td>
+                            <td>
+                                <a href="{{ url('resource/wansolarwinds/' . $wan->id . '/edit') }}"
                                     class="btn btn-sm btn-warning"><i class="fa fa-fw fa-pen"></i></a>
                             </td>
                         </tr>
@@ -74,6 +60,7 @@
         </div>
     </div>
 @stop
+
 @section('js')
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
@@ -81,7 +68,7 @@
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        $('#iptable').DataTable({
+        $('#wantable').DataTable({
             responsive: true,
             autoWidth: false,
             "language": {

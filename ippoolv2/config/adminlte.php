@@ -301,7 +301,7 @@ return [
             ]
         ],
         [
-            'text'    => 'Agregar recursos',
+            'text'    => 'Asignar recursos',
             'icon'    => 'fas fa-fw fa-plus-square',
             'submenu' => [
                 [
@@ -312,8 +312,26 @@ return [
                 ],
                 [
                     'text'  => 'Wan Solarwinds',
-                    'route'     => 'admin.wansolarwinds.index',
-                    'active'    => ['admin/wansolarwinds*'],
+                    'url'     => 'resource/wansolarwinds',
+                    'active'    => ['resource/wansolarwinds*'],
+                    'icon'  => 'fas fa-fw fa-server',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Módulo de Consultas',
+            'icon'    => 'fas fa-fw fa-eye',
+            'submenu' => [
+                [
+                    'text'  => 'Empresas',
+                    'url' => 'lista/empresas',
+                    'icon'  => 'fas fa-fw fa-industry',
+                    'active'    => ['lista/empresas*']
+                ],
+                [
+                    'text'  => 'VPRN',
+                    'url'     => 'resource/wansolarwinds',
+                    'active'    => ['resource/wansolarwinds*'],
                     'icon'  => 'fas fa-fw fa-server',
                 ],
             ],
