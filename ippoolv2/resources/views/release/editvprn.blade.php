@@ -99,23 +99,37 @@
                 $('input:checkbox[name=ids]:checked').each(function() {
                     vprnallids.push($(this).val());
                 });
-                $.ajax({
-                    type: "post",
-                    url: "{{ url('release/wansolarwind') }}",
-                    data: {
-                        _token: $("input[name=_token]").val(),
-                        ids: vprnallids,
-                    },
-                    success: function(response) {
-                        $.each(vprnallids, function(key, val) {
-                            $('#vprnid' + val).remove();
-                            Swal.fire({
-                                // position: 'top-end',
-                                title: 'Ok!',
-                                text: "Se liberó la VPRN seleccionada",
-                                confirmButtonColor: '#1e5f74',
-                                confirmButtonText: 'Aceptar'
-                            });
+                Swal.fire({
+                    position: 'top-end',
+                    title: 'Está seguro?',
+                    text: 'Desea liberar estos recursos',
+                    icon: 'error',
+                    showCancelButton: true,
+                    cancelButtonColor: '#e3342f',
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonColor: '#1e5f74',
+                    confirmButtonText: 'Aceptar',
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            type: "post",
+                            url: "{{ url('release/wansolarwind') }}",
+                            data: {
+                                _token: $("input[name=_token]").val(),
+                                ids: vprnallids,
+                            },
+                            success: function(response) {
+                                $.each(vprnallids, function(key, val) {
+                                    $('#vprnid' + val).remove();
+                                    Swal.fire({
+                                        // position: 'top-end',
+                                        title: 'Ok!',
+                                        text: "Se liberó la VPRN seleccionada",
+                                        confirmButtonColor: '#1e5f74',
+                                        confirmButtonText: 'Aceptar'
+                                    });
+                                });
+                            }
                         });
                     }
                 });

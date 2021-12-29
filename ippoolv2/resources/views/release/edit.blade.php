@@ -127,23 +127,37 @@
                 $('input:checkbox[name=ids]:checked').each(function() {
                     allids.push($(this).val());
                 });
-                $.ajax({
-                    type: "post",
-                    url: "{{ url('release/ipaddress') }}",
-                    data: {
-                        _token: $("input[name=_token]").val(),
-                        ids: allids,
-                    },
-                    success: function(response) {
-                        $.each(allids, function(key, val) {
-                            $('#ipid' + val).remove();
-                            Swal.fire({
-                                // position: 'top-end',
-                                title: 'Ok!',
-                                text: "Se liberó la Ip seleccionada",
-                                confirmButtonColor: '#1e5f74',
-                                confirmButtonText: 'Aceptar'
-                            });
+                Swal.fire({
+                    position: 'top-end',
+                    title: 'Está seguro?',
+                    text: 'Desea liberar estos recursos',
+                    icon: 'error',
+                    showCancelButton: true,
+                    cancelButtonColor: '#e3342f',
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonColor: '#1e5f74',
+                    confirmButtonText: 'Aceptar',
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            type: "post",
+                            url: "{{ url('release/ipaddress') }}",
+                            data: {
+                                _token: $("input[name=_token]").val(),
+                                ids: allids,
+                            },
+                            success: function(response) {
+                                $.each(allids, function(key, val) {
+                                    $('#ipid' + val).remove();
+                                    Swal.fire({
+                                        // position: 'top-end',
+                                        title: 'Ok!',
+                                        text: "Se liberó la Ip seleccionada",
+                                        confirmButtonColor: '#1e5f74',
+                                        confirmButtonText: 'Aceptar'
+                                    });
+                                });
+                            }
                         });
                     }
                 });

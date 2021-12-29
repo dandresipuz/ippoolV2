@@ -24,12 +24,12 @@ use App\Http\Controllers\CentralizadorController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/admin', function () {
+    return view('admin.admin');
+})->name('admin.admin');
 
 Route::get('/admin', function () {
     return view('admin.admin');

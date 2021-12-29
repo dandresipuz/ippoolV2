@@ -20,7 +20,7 @@ class WansolarwindImport implements ToModel, WithStartRow
     public function model(array $row)
     {
 
-        $empresa = $this->empresas->where('documento', $row[9])->first();
+        $empresa = $this->empresas->where('documento', $row[8])->first();
 
         return new Wansolarwind([
             'vlanid'         => $row[0],
@@ -31,9 +31,14 @@ class WansolarwindImport implements ToModel, WithStartRow
             'ipboggcuno'     => $row[5],
             'ipbog41000'     => $row[6],
             'ipboggcdos'     => $row[7],
-            'estado'         => $row[8],
             'empresa_id'     => $empresa->id ?? NULL,
+            'estado'         => 1,
         ]);
+    }
+
+    public function uniqueBy()
+    {
+        return 'vlanid';
     }
 
     public function startRow(): int

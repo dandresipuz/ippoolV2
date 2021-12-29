@@ -127,7 +127,7 @@ class IpaddressController extends Controller
     {
         $file = $request->file('file');
         \Excel::import(new IpaddressImport, $file);
-        return redirect()->back()->with('message', 'Las IP\'s fueron importadas con exito');
+        return redirect()->back()->with('message', 'Las direcciones IP fueron importadas con exito');
     }
 
     public function addIndexResource()

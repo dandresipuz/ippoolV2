@@ -9,14 +9,11 @@
 @endsection
 
 @section('content_header')
-    <h1><i class="fa fa-fw fa-th-list"></i> Lista de empresas</h1>
 @stop
 @section('content')
     <div class="card">
         <div class="card-header py-4">
-            <a class="btn btn-sm btn-success" href="{{ url('lista/empresas/create') }}"><i class="fa fa-fw fa-plus"></i>
-                Agregar
-                empresa</a>
+            <h1><i class="fa fa-fw fa-th-list"></i> Lista de empresas</h1>
         </div>
         <div class="card-body">
             <table class="table table-hover" id="empresatable">

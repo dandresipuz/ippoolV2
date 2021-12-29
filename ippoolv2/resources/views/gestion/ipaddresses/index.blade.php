@@ -9,13 +9,26 @@
 @endsection
 
 @section('content_header')
-
+    <h1><i class="fa fa-fw fa-th-list"></i> Lista de direcciones IP disponibles</h1>
 @stop
 
 @section('content')
     <div class="card">
         <div class="card-header py-4">
-            <h1><i class="fa fa-fw fa-th-list"></i> Lista de direcciones IP disponibles</h1>
+            <form action="{{ url('import/excel/ipaddresses') }}" method="POST" enctype="multipart/form-data"
+                class="d-inline">
+                @csrf
+                <input type="file" class="d-none" id="file" name="file"
+                    accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                <button type="button" class="btn btn-success btn-sm btn-excel">
+                    <i class="fas fa-fw fa-file-excel"></i>
+                    Importar Archivo
+                </button>
+            </form>
+
+            <a class="btn btn-sm btn-info" href="{{ asset('formatos/formato_ip.xlsx') }}" target="_blank"><i
+                    class="fas fa-fw fa-file-download"></i>
+                Descargar formato</a>
         </div>
         <div class="card-body">
             <table class="table table-hover" id="iptable">
