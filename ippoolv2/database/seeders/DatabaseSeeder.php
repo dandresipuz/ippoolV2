@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AliadoSeeder::class);
         $this->call(AreaSeeder::class);
         \App\Models\Centralizador::factory(20)->create();
+        $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
         \App\Models\User::factory(30)->create();
         \App\Models\Empresa::factory(100)->create();
