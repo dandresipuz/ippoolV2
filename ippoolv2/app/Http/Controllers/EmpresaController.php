@@ -13,6 +13,23 @@ use App\Models\Wansolarwind;
 
 class EmpresaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.empresas.index')->only('index');
+        $this->middleware('can:admin.empresas.create')->only('create', 'store');
+        $this->middleware('can:admin.empresas.edit')->only('edit', 'update');
+        $this->middleware('can:admin.empresas.show')->only('show');
+        $this->middleware('can:admin.empresas.show')->only('destroy');
+        $this->middleware('can:admin.empresas.excel')->only('excel');
+        $this->middleware('can:admin.empresas.import')->only('import');
+        $this->middleware('can:releases.empresas.indexResource')->only('indexResource');
+        $this->middleware('can:releases.empresas.releaseResource')->only('releaseResource', 'updateResource');
+        $this->middleware('can:releases.empresas.releaseVprnResource')->only('releaseVprnResource', 'updateVprn');
+        $this->middleware('can:consulta.empresas.indexEmpresas')->only('indexEmpresas');
+        $this->middleware('can:consulta.empresas.createEmpresa')->only('createEmpresa');
+        $this->middleware('can:consulta.empresas.showEmpresa')->only('showEmpresa');
+    }
+
     /**
      * Display a listing of the resource.
      *

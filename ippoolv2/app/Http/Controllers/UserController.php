@@ -12,12 +12,25 @@ use App\Imports\UserImport;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\ChangepasswordRequest;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin.users.index')->only('index');
+        $this->middleware('can:admin.users.create')->only('create', 'store');
+        $this->middleware('can:admin.users.edit')->only('edit', 'update');
+        $this->middleware('can:admin.users.show')->only('show');
+        $this->middleware('can:admin.users.show')->only('destroy');
+        $this->middleware('can:admin.users.excel')->only('excel');
+        $this->middleware('can:admin.users.import')->only('import');
+        $this->middleware('can:admin.home')->only('passwordForm', 'updatePassword');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -73,10 +86,14 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $roles = Role::all();
         $aliados = Aliado::all();
         $areas    = Area::all();
+
+        //dd($userRole->id);
         return view('admin.users.edit')->with('user', $user)
             ->with("aliados", $aliados)
+            ->with("roles", $roles)
             ->with('areas', $areas);
     }
 
@@ -99,10 +116,9 @@ class UserController extends Controller
         $user->perfil           = $request->perfil;
         $user->aliado_id        = $request->aliado_id;
         $user->area_id          = $request->area_id;
+        $user->roles()->sync($request->role);
         if ($user->password != null) {
             $user->password     = bcrypt($request->password);
-        } else {
-            unset($user->password);
         }
         if ($user->active == 2) { //Pregunta si es 2 se pasa a 0
             $user->active = 0;
@@ -156,7 +172,7 @@ class UserController extends Controller
             $user = new User;
             $user->where('id', '=', Auth::user()->id)
                 ->update(['password' => bcrypt($request->password)]);
-            return redirect()->route('admin.users.index')->with('message', 'La contraseña fue cambiada con exito');
+            return redirect()->route('consulta.empresas.index')->with('message', 'La contraseña fue cambiada con exito!, por favor inicia sesión con tu nueva contraseña');
         } else {
             return redirect()->back()->with('error', 'La contraseña antigua es incorrecta');
         }

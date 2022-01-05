@@ -241,20 +241,18 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ], */
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
+
         [
             'text'        => 'Dashboard',
             'url'         => 'admin',
             'icon'        => 'fas fa-fw fa-tachometer-alt',
+            'can'         => 'admin.home',
         ],
         // ['header' => 'ADMINISTRADOR'],
         [
             'text'    => 'Administración',
             'icon'    => 'fas fa-fw fa-toolbox',
+            'can'     => 'admin.users.index',
             'submenu' => [
                 [
                     'text'      => 'Usuarios',
@@ -303,6 +301,7 @@ return [
         [
             'text'    => 'Asignar recursos',
             'icon'    => 'fas fa-fw fa-plus-square',
+            'can'     => 'gestion.ipaddresses.addIndexResource',
             'submenu' => [
                 [
                     'text'  => 'IP Address',
@@ -321,6 +320,7 @@ return [
         [
             'text'    => 'Módulo de Consultas',
             'icon'    => 'fas fa-fw fa-eye',
+            'can'     => 'consulta.empresas.indexEmpresas',
             'submenu' => [
                 [
                     'text'  => 'Empresas',
@@ -338,13 +338,15 @@ return [
         ],
         [
             'text'      => 'Liberar Recursos',
-            'url'     => 'release/empresas',
-            'icon' => 'fas fa-fw fa-expand-alt',
+            'url'       => 'release/empresas',
+            'icon'      => 'fas fa-fw fa-expand-alt',
+            'can'       => 'releases.empresas.indexResource'
         ],
         [
             'text'      => 'Cambiar contraseña',
-            'url'     => 'profile/password',
-            'icon' => 'fas fa-fw fa-lock',
+            'url'       => 'profile/password',
+            'icon'      => 'fas fa-fw fa-lock',
+            'can'       => 'admin.home',
         ],
     ],
 

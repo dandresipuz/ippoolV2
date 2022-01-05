@@ -26,6 +26,10 @@
                 </button>
             </form>
 
+            <a class="btn btn-sm btn-warning" href="{{ url('generate/excel/wansolarwinds') }}"><i
+                    class="fas fa-fw fa-file-excel"></i>
+                Exportar Excel</a>
+
             <a class="btn btn-sm btn-info" href="{{ asset('formatos/formato_wan.xlsx') }}" target="_blank"><i
                     class="fas fa-fw fa-file-download"></i>
                 Descargar formato</a>

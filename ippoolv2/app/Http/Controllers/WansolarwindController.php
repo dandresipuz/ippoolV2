@@ -13,6 +13,21 @@ use App\Imports\WansolarwindImport;
 
 class WansolarwindController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.wansolarwinds.index')->only('index');
+        $this->middleware('can:admin.wansolarwinds.create')->only('create', 'store');
+        $this->middleware('can:admin.wansolarwinds.edit')->only('edit');
+        $this->middleware('can:admin.wansolarwinds.show')->only('show');
+        $this->middleware('can:admin.wansolarwinds.show')->only('destroy');
+        $this->middleware('can:admin.wansolarwinds.excel')->only('excel');
+        $this->middleware('can:admin.wansolarwinds.import')->only('import');
+        $this->middleware('can:admin.wansolarwinds.addIndexResource')->only('addIndexResource');
+        $this->middleware('can:admin.wansolarwinds.addEditResource')->only('addEditResource', 'update');
+        $this->middleware('can:admin.wansolarwinds.indexWansolarwinds')->only('indexWansolarwinds');
+        $this->middleware('can:admin.wansolarwinds.showWansolarwind')->only('showWansolarwind');
+    }
+
     /**
      * Display a listing of the resource.
      *

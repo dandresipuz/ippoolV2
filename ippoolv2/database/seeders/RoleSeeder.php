@@ -55,9 +55,9 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.empresas.import'])->syncRoles([$admin, $gestion]);
 
         // Liberar IP's y VPRN
-        Permission::create(['name' => 'releases.empresas.indexResource'])->syncRoles([$admin, $gestion, $consulta]);
-        Permission::create(['name' => 'releases.empresas.releaseResource'])->syncRoles([$admin, $gestion, $consulta]);
-        Permission::create(['name' => 'releases.empresas.releaseVprnResource'])->syncRoles([$admin, $gestion, $consulta]);
+        Permission::create(['name' => 'releases.empresas.indexResource'])->syncRoles([$admin, $gestion]);
+        Permission::create(['name' => 'releases.empresas.releaseResource'])->syncRoles([$admin, $gestion]);
+        Permission::create(['name' => 'releases.empresas.releaseVprnResource'])->syncRoles([$admin, $gestion]);
 
         // Consultar
         Permission::create(['name' => 'consulta.empresas.indexEmpresas'])->syncRoles([$admin, $gestion, $consulta]);
@@ -73,8 +73,8 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.ipaddresses.import'])->syncRoles([$admin, $gestion]);
 
         // Gestión
-        Permission::create(['name' => 'gestion.ipaddresses.addIndexResource'])->syncRoles([$admin, $gestion, $consulta]);
-        Permission::create(['name' => 'gestion.ipaddresses.addEditResource'])->syncRoles([$admin, $gestion, $consulta]);
+        Permission::create(['name' => 'gestion.ipaddresses.addIndexResource'])->syncRoles([$admin, $gestion]);
+        Permission::create(['name' => 'gestion.ipaddresses.addEditResource'])->syncRoles([$admin, $gestion]);
 
         Permission::create(['name' => 'admin.wansolarwinds.index'])->assignRole($admin);
         Permission::create(['name' => 'admin.wansolarwinds.create'])->assignRole($admin);
@@ -84,8 +84,8 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.wansolarwinds.import'])->syncRoles([$admin, $gestion]);
 
         // Gestion
-        Permission::create(['name' => 'admin.wansolarwinds.addIndexResource'])->syncRoles([$admin, $gestion, $consulta]);
-        Permission::create(['name' => 'admin.wansolarwinds.addEditResource'])->syncRoles([$admin, $gestion, $consulta]);
+        Permission::create(['name' => 'admin.wansolarwinds.addIndexResource'])->syncRoles([$admin, $gestion]);
+        Permission::create(['name' => 'admin.wansolarwinds.addEditResource'])->syncRoles([$admin, $gestion]);
 
         // Consulta
         Permission::create(['name' => 'admin.wansolarwinds.indexWansolarwinds'])->syncRoles([$admin, $gestion, $consulta]);

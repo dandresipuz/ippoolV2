@@ -11,6 +11,18 @@ use Illuminate\Support\Facades\DB;
 
 class IpaddressController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.ipaddresses.index')->only('index');
+        $this->middleware('can:admin.ipaddresses.create')->only('create', 'store');
+        $this->middleware('can:admin.ipaddresses.edit')->only('edit');
+        $this->middleware('can:admin.ipaddresses.show')->only('show');
+        $this->middleware('can:admin.ipaddresses.show')->only('destroy');
+        $this->middleware('can:admin.ipaddresses.excel')->only('excel');
+        $this->middleware('can:admin.ipaddresses.import')->only('import');
+        $this->middleware('can:gestion.ipaddresses.addIndexResource')->only('addIndexResource');
+        $this->middleware('can:gestion.ipaddresses.addEditResource')->only('addEditResource', 'update');
+    }
     /**
      * Display a listing of the resource.
      *

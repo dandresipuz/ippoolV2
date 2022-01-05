@@ -9,6 +9,14 @@ use App\Http\Requests\AliadoRequest;
 
 class AliadoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.aliados.index')->only('index');
+        $this->middleware('can:admin.aliados.create')->only('create', 'store');
+        $this->middleware('can:admin.aliados.edit')->only('edit', 'update');
+        $this->middleware('can:admin.aliados.show')->only('show');
+        $this->middleware('can:admin.aliados.show')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

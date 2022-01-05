@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\DB;
 
 class AreaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.areas.index')->only('index');
+        $this->middleware('can:admin.areas.create')->only('create', 'store');
+        $this->middleware('can:admin.areas.edit')->only('edit', 'update');
+        $this->middleware('can:admin.areas.show')->only('show');
+        $this->middleware('can:admin.areas.show')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *

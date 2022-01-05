@@ -146,6 +146,22 @@
                         </div>
 
                         <div class="form-group">
+                            <select name="role" class="form-control @error('perfil') is-invalid @enderror">
+                                <option value="">Seleccionar Rol</option>
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->id }}">{{ $role->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                            @error('perfil')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
                             <select name="aliado_id" class="form-control @error('aliado_id') is-invalid @enderror">
                                 <option value="">Seleccionar aliado...</option>
                                 @foreach ($aliados as $aliado)

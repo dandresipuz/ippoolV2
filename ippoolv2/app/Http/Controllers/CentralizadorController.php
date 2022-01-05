@@ -11,6 +11,17 @@ use App\Imports\CentralizadorImport;
 
 class CentralizadorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.centralizadores.index')->only('index');
+        $this->middleware('can:admin.centralizadores.create')->only('create', 'store');
+        $this->middleware('can:admin.centralizadores.edit')->only('edit', 'update');
+        $this->middleware('can:admin.centralizadores.show')->only('show');
+        $this->middleware('can:admin.centralizadores.show')->only('destroy');
+        $this->middleware('can:admin.centralizadores.excel')->only('excel');
+        $this->middleware('can:admin.centralizadores.import')->only('import');
+    }
+
     /**
      * Display a listing of the resource.
      *
