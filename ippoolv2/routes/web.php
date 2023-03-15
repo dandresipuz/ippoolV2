@@ -10,7 +10,7 @@ use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\IpaddressController;
 use App\Http\Controllers\WansolarwindController;
 use App\Http\Controllers\CentralizadorController;
-
+use App\Http\Controllers\Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,13 +27,14 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/admin', function () {
-    return view('admin.admin');
-})->name('admin.admin');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/admin', function () {
+// })->name('admin.admin');
 
-Route::get('/admin', function () {
-    return view('admin.admin');
-});
+// Route::get('/admin', function () {
+//     return view('admin.admin');
+// });
+
+Route::get('/home', 'App\Http\Controllers\Controller@index')->name('home');
 
 Route::resource('admin/users', UserController::class)->names('admin.users');
 Route::resource('admin/aliados', AliadoController::class)->names('admin.aliados');

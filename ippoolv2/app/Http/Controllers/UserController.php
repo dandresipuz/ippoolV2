@@ -117,7 +117,7 @@ class UserController extends Controller
         $user->aliado_id        = $request->aliado_id;
         $user->area_id          = $request->area_id;
         $user->roles()->sync($request->role);
-        if ($user->password != null) {
+        if (!empty($request->password)) {
             $user->password     = bcrypt($request->password);
         }
         if ($user->active == 2) { //Pregunta si es 2 se pasa a 0

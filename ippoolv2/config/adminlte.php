@@ -188,7 +188,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'admin',
+    'dashboard_url' => 'home',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -244,7 +244,7 @@ return [
 
         [
             'text'        => 'Dashboard',
-            'url'         => 'admin',
+            'url'         => 'home',
             'icon'        => 'fas fa-fw fa-tachometer-alt',
             'can'         => 'admin.home',
         ],
@@ -318,6 +318,12 @@ return [
             ],
         ],
         [
+            'text'      => 'Liberar Recursos',
+            'url'       => 'release/empresas',
+            'icon'      => 'fas fa-fw fa-expand-alt',
+            'can'       => 'releases.empresas.indexResource'
+        ],
+        [
             'text'    => 'Módulo de Consultas',
             'icon'    => 'fas fa-fw fa-eye',
             'can'     => 'consulta.empresas.indexEmpresas',
@@ -335,12 +341,6 @@ return [
                     'icon'  => 'fas fa-fw fa-server',
                 ],
             ],
-        ],
-        [
-            'text'      => 'Liberar Recursos',
-            'url'       => 'release/empresas',
-            'icon'      => 'fas fa-fw fa-expand-alt',
-            'can'       => 'releases.empresas.indexResource'
         ],
         [
             'text'      => 'Cambiar contraseña',
